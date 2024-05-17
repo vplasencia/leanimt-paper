@@ -1,0 +1,11 @@
+{
+  "name": "leanimt-paper",
+  "scripts": {
+    "prettier": "prettier -c .",
+    "prettier:write": "prettier -w ."
+  },
+  "packageManager": "yarn@4.2.2",
+  "devDependencies": {
+    "prettier": "^3.2.5"
+  }
+}
