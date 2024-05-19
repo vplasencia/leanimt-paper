@@ -1,5 +1,13 @@
 # LeanIMT Paper
 
+This repository contains the LeanIMT Paper.
+
+## Related work
+
+- LeanIMT document: https://hackmd.io/@vplasencia/S1whLBN16
+
+- LeanIMT benchmarks on browser and Node.js: https://github.com/vplasencia/imt-benchmarks
+
 ## Install Latex to work with VSCode on Mac
 
 1. Install [Miktex](https://miktex.org/).
