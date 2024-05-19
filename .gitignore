@@ -37,3 +37,5 @@ node_modules/
 *.fls
 *.log
 *.gz
+*.toc
+*.out

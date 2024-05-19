@@ -1,15 +1,65 @@
-\documentclass{article} % \documentclass{} is the first command in any LaTeX code.  It is used to define what kind of document you are creating such as an article or a book, and begins the document preamble
+% \documentclass{} is the first command in any LaTeX code.  
+% It is used to define what kind of document you are creating 
+% such as an article or a book, and begins the document preamble
+\documentclass{article} 
 
-\title{LeanIMT: An optimized IMT} % Sets article title
-\author{Privacy \& Scaling Explorations} % Sets authors name
-\date{\today} % Sets date for date compiled
+% Packages for customizing the ToC
+\usepackage{tocloft}
+\usepackage{hyperref}
+
+% Add dots to the table of contents
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsubsecleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsubsubsecleader}{\cftdotfill{\cftdotsep}}
+
+% Adjust spacing in the ToC (optional)
+\setlength{\cftbeforesecskip}{1.5pt}
+\setlength{\cftbeforesubsecskip}{1.0pt}
+
+% Hyperlink settings
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+    pdftitle={Custom Table of Contents},
+    pdfpagemode=FullScreen,
+}
+
+% Article title
+\title{LeanIMT: An optimized IMT} 
+% Authors name
+\author{Privacy \& Scaling Explorations} 
+% Date for date compiled
+\date{\today} 
 
 % The preamble ends with the command \begin{document}
-\begin{document} % All begin commands must be paired with an end command somewhere
-\maketitle % creates title using information in preamble (title, author, date)
+% All begin commands must be paired with an end command somewhere
+\begin{document}
+% Creates title using information in preamble (title, author, date)
+\maketitle
 
-\section{Abstract} % creates a section
+% Creates a section for the Abstract
+\section{Abstract}
 
-...
+% Insert a new page
+\newpage
+% Insert the Table of Contents
+\tableofcontents
+% Insert a new page
+\newpage
 
-\end{document} % This is the end of the document
+% Creates a section for the Introduction
+\section{Introduction}
+
+% Creates a subsection for the Motivation within Introduction
+\subsection{Motivation}
+
+\section{LeanIMT Technical Explanation}
+
+\section{Benchmarks}
+
+\section{Conslusions}
+
+% This is the end of the document
+\end{document}
