@@ -5,6 +5,7 @@
 
 % Packages for customizing the ToC
 \usepackage{tocloft}
+\usepackage{xcolor} % Package for color definitions
 \usepackage{hyperref}
 
 % Add dots to the table of contents
@@ -12,19 +13,25 @@
 \renewcommand{\cftsubsecleader}{\cftdotfill{\cftdotsep}}
 \renewcommand{\cftsubsubsecleader}{\cftdotfill{\cftdotsep}}
 
-% Adjust spacing in the ToC (optional)
-\setlength{\cftbeforesecskip}{1.5pt}
-\setlength{\cftbeforesubsecskip}{1.0pt}
+% Define custom colors using xcolor
+\definecolor{blue600}{HTML}{2563eb}
+\definecolor{blue700}{HTML}{1d4ed8}
 
 % Hyperlink settings
 \hypersetup{
+    % Enable colored links
     colorlinks=true,
-    linkcolor=blue,
-    filecolor=magenta,
-    urlcolor=cyan,
-    pdftitle={Custom Table of Contents},
-    pdfpagemode=FullScreen,
+    % Color for internal links (sections, pages, etc.)
+    linkcolor=blue700,
+    % Color for external URLs
+    urlcolor=blue600,
+    % Color for citation links
+    citecolor=blue700
 }
+
+% Bibliography package
+\usepackage[backend=biber,style=numeric]{biblatex}
+\addbibresource{references.bib}
 
 % Article title
 \title{LeanIMT: An optimized IMT} 
@@ -60,6 +67,15 @@
 \section{Benchmarks}
 
 \section{Conslusions}
+
+% Example citation in the Introduction section
+This document is based on the work of \cite{semaphorev1whitepaper}.
+
+% Allow LaTeX to break lines more flexibly in the bibliography
+\sloppy
+
+% Bibliography section
+\printbibliography
 
 % This is the end of the document
 \end{document}

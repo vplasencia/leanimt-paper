@@ -21,3 +21,6 @@ yarn-error.log*
 *.gz
 *.toc
 *.out
+*.bbl
+*.bcf
+*.xml
