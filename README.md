@@ -8,6 +8,12 @@ This repository contains the LeanIMT Paper.
 
 - LeanIMT benchmarks on browser and Node.js: https://github.com/vplasencia/imt-benchmarks
 
+## Code
+
+- LeanIMT TypeScript implementation: https://github.com/privacy-scaling-explorations/zk-kit/tree/main/packages/lean-imt.
+
+- LeanIMT Solidity implementation: https://github.com/privacy-scaling-explorations/zk-kit.solidity/tree/main/packages/lean-imt.
+
 ## Install Latex to work with VSCode on Mac
 
 1. Install [Miktex](https://miktex.org/).
