@@ -105,8 +105,12 @@ $V = \{a_0, a_1, a_2, a_3, H_0, H_1, H_2\}$
 
 $E = \{(a_0, H_0), (a_1, H_0), (a_2, H_1), (a_3, H_1), (H_0, H_2), (H_1, H_2)\}$
 
+\bigbreak
+
 \begin{multicols}{2}
-    \bigbreak
+    \vfill
+    \columnbreak
+    \vspace*{\fill}
     \begin{center}
         \begin{forest}
             for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
