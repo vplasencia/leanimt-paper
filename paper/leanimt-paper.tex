@@ -8,6 +8,10 @@
 \usepackage{xcolor} % Package for color definitions
 \usepackage{hyperref}
 
+\usepackage{forest}
+
+\usepackage{multicol}
+
 % Add dots to the table of contents
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
 \renewcommand{\cftsubsecleader}{\cftdotfill{\cftdotsep}}
@@ -62,7 +66,82 @@
 % Creates a subsection for the Motivation within Introduction
 \subsection{Motivation}
 
-\section{LeanIMT Technical Explanation}
+\section{Merkle Tree}
+
+\subsection{Incremental Merkle Tree}
+
+
+TODO: Explain what is a Merkle tree and an Incremental Merkle Tree.
+
+% Add a new empty line
+\bigbreak
+
+% Generic Merkle Tree 
+
+\begin{center}
+    \begin{forest}
+        for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-18pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
+        [$H_6$ \\ \color{blue600}H($H_4{||}H_5$)
+        [$H_4$ \\ \color{blue600}H($H_0{||}H_1$) [$H_0$ \\ \color{blue600}H($a_0{||}a_1$) [$a_0$] [$a_1$]] [$H_1$ \\ \color{blue600}H($a_2{||}a_3$) [$a_2$] [$a_3$]]]
+        [$H_5$ \\ \color{blue600}H($H_2{||}H_3$) [$H_2$ \\ \color{blue600}H($a_4{||}a_5$) [$a_4$] [$a_5$]] [$H_3$ \\ \color{blue600}H($H_6{||}H_7$) [$a_6$] [$a_7$]]]
+        ]
+    \end{forest}
+\end{center}
+
+\bigbreak
+
+\section{LeanIMT}
+
+$T = (V,E)$
+
+% align to the left
+\raggedright
+
+\bigbreak
+
+$V = \{a_0, a_1, a_2, a_3, H_0, H_1, H_2\}$
+
+\bigbreak
+
+$E = \{(a_0, H_0), (a_1, H_0), (a_2, H_1), (a_3, H_1), (H_0, H_2), (H_1, H_2)\}$
+
+\begin{multicols}{2}
+    \bigbreak
+    \begin{center}
+        \begin{forest}
+            for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
+            [$H_2$
+            [$H_0$
+                    [$a_0$]
+                        [$a_1$]
+                ]
+                [$H_1$
+                    [$a_2$]
+                        [$a_3$]
+                ]
+            ]
+        \end{forest}
+    \end{center}
+    \begin{center}
+        \textit{Before inserting $a_4$}
+    \end{center}
+    \begin{center}
+        \begin{forest}
+            for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
+            [$H_3$, draw=blue600, top color=blue600!0, bottom color=blue600!0
+            [
+            $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
+            ]
+            [$a_4$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_4$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_4$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0]]]
+            ]
+        \end{forest}
+    \end{center}
+    \begin{center}
+        \textit{After inserting $a_4$}
+    \end{center}
+\end{multicols}
+
+\bigbreak
 
 \section{Benchmarks}
 
