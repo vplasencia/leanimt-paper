@@ -8,8 +8,10 @@
 \usepackage{xcolor} % Package for color definitions
 \usepackage{hyperref}
 
+% Create trees
 \usepackage{forest}
 
+% Create two column content
 \usepackage{multicol}
 
 % Add dots to the table of contents
@@ -70,6 +72,16 @@
 
 \subsection{Incremental Merkle Tree}
 
+An Incrememental Merkle Tree (IMT) is a Merkle Tree (MT) designed to be updated efficiently.
+
+% align to the left
+\raggedright
+
+\bigbreak
+
+\subsection{Binary Tree}
+
+A Binary Tree is a tree data structure in which each node has at most two children, referred to as the left child and the right child.
 
 TODO: Explain what is a Merkle tree and an Incremental Merkle Tree.
 
@@ -91,6 +103,63 @@ TODO: Explain what is a Merkle tree and an Incremental Merkle Tree.
 \bigbreak
 
 \section{LeanIMT}
+
+\subsection{Definition}
+
+\bigbreak
+
+The \textbf{LeanIMT} (Lean Incremental Merkle Tree) is a Binary IMT.
+
+\bigbreak
+
+% align to the left
+\raggedright
+
+The LeanIMT has two properties:
+
+1. Every node with two children is the hash of its two child nodes.
+
+2. Every node with one child has the same value as its child node.
+
+\bigbreak
+
+Example of a LeanIMT
+
+\bigbreak
+
+$T = (V,E)$
+
+% align to the left
+\raggedright
+
+\bigbreak
+
+$V = \{a_0, a_1, a_2, H_0, H_1, H_2\}$
+
+\bigbreak
+
+$E = \{(a_0, H_0), (a_1, H_0), (a_2, a_2), (H_0, H_1), (a_2, a_2)\}$
+
+\bigbreak
+
+\begin{center}
+    \begin{forest}
+        for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-18pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
+        [$H_1$ \\ \color{blue600}H($H_0{||}a_2$)
+        [$H_0$ \\ \color{blue600}H($a_0{||}a_1$)
+        [$a_0$]
+            [$a_1$]
+        ]
+        [$a_2$ \\ \color{blue600}$a_2$
+        [$a_2$]
+        ]
+        ]
+    \end{forest}
+\end{center}
+
+\bigbreak
+
+\subsection{Insertion}
 
 $T = (V,E)$
 

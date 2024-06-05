@@ -39,6 +39,6 @@ node_modules/
 *.gz
 *.toc
 *.out
-*.bbl
+*.bbl*
 *.bcf
 *.xml
