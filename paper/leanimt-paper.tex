@@ -313,7 +313,6 @@ If we add $a_5$.
     \caption{LeanIMT Insert algorithm}\label{insert}
     \begin{algorithmic}[1]
         \Procedure{Insert}{$leaf$}
-        \State \textbf{require} leaf is defined
         \If{$depth < newDepth$} \Comment{$newDepth$ is the new depth of the tree after inserting the new node}
         \State add a new empty array to nodes \Comment{Add a new tree level}
         \EndIf
@@ -325,7 +324,7 @@ If we add $a_5$.
         \State sibling $\gets$ nodes[level][index - 1]
         \State node $\gets$ \textbf{hash}(sibling, node)
         \EndIf
-        \State index $\gets$ $\lfloor index/2 \rfloor$ \Comment{Divides a number by 2 and discards the remainder.}
+        \State index $\gets$ $\lfloor index/2 \rfloor$ \Comment{Divides the index by 2 and discards the remainder.}
         \EndFor
         \State nodes[depth] $\gets$ [node] \Comment{Store the new root at the top level}
         \EndProcedure
@@ -337,6 +336,14 @@ If we add $a_5$.
 \subsection{Batch Insertion}
 
 Performing the insertion in bulk rather than individually using a loop can lead to significant performance improvements. This optimization stems from the reduced number of hashing operations required. By inserting many elements at once, the algorithm can minimize redundant computations and manage memory more efficiently, resulting in faster execution and better overall performance.
+
+\bigbreak
+
+When inserting $n$ members, all levels will be updated $n$ times if the batch insertion function is not being used.
+
+The core idea behind the batch insertion algorithm is to update each level only once even if there are many members to be inserted.
+
+The algorithm will go through the nodes that are necessary to update the next level of the tree. The other nodes in the tree won't be used or changed.
 
 \bigbreak
 
@@ -384,34 +391,33 @@ Insert $a_4$ and $a_5$.
 
 \bigbreak
 
-TODO: Continue adding the pseudocode to batch insertion
-
 \subsubsection{Pseudocode}
 
 \begin{algorithm}[H]
     \caption{LeanIMT InsertMany algorithm}\label{insertMany}
     \begin{algorithmic}[1]
         \Procedure{InsertMany}{$leaves$: List of nodes}
-        \State \textbf{require} leaves is defined and it is an array
         \If{$leaves$ lenght $= 0$}
         \State THROW ERROR "There are no leaves to add"
         \EndIf
-        \State startIndex $\gets$ $\lfloor index/2 \rfloor$ \Comment{Divides a number by 2 and discards the remainder.}
+        \State $startIndex$ $\gets$ $\lfloor size/2 \rfloor$ \Comment{Divides the size of the tree by 2 and discards the remainder.}
+        \State Add $leaves$ to the tree leaves
 
-        \If{$depth < new depth$} \Comment{If the tree depth after inserting a node is greater, add a new tree level}
-        \State add a new empty array to nodes
-        \EndIf
-        \State $node\gets leaf$
-        \State $index\gets size$ \Comment{The index of the new leaf equals the number of leaves in the tree.}
         \For{level from 0 to depth - 1}
-        \State nodes[level][index] $\gets$ node
-        \If{index \textbf{is odd}} \Comment{It's a right node}
-        \State sibling $\gets$ nodes[level][index - 1]
-        \State node $\gets$ \textbf{hash}(sibling, node)
+        \State numberOfNodes $\gets$ $\lceil nodes[level].length / 2 \rceil$ \Comment{ Calculate the number of nodes of the next level. numberOfNodes will be the smallest integrer which is greater than or equal to the result of dividing the number of nodes of the level by 2.}
+        \For{index from $startIndex$ to numberOfNodes - 1}
+        \State rightNode $\gets$ nodes[level][index * 2 + 1] \Comment{Get the right node if exists.}
+        \State leftNode $\gets$ nodes[level][index * 2] \Comment{Get the left node if exists.}
+
+        \If{$rightNode$ exists}
+        \State parentNode $\gets$ $hash(leftNode, rightNode)$
+        \Else
+        \State parentNode $\gets$ $leftNode$
         \EndIf
-        \State index $\gets$ $\lfloor index/2 \rfloor$ \Comment{Divides a number by 2 and discards the remainder.}
+        \State nodes[level + 1][index] $\gets$ parentNode \Comment{Add the parent node to the tree.}
         \EndFor
-        \State nodes[depth] $\gets$ [node] \Comment{Store the new root at the top level}
+        \State startIndex $\gets$ $\lfloor startIndex/2 \rfloor$ \Comment{Divide startIndex by 2 and discards the remainder.}
+        \EndFor
         \EndProcedure
     \end{algorithmic}
 \end{algorithm}
@@ -441,11 +447,11 @@ Update $a_4$ to $a_5$
     \begin{center}
         \begin{forest}
             for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
-            [$H_3$, draw=blue600, top color=blue600!0, bottom color=blue600!0
+            [$H_3$
             [
-            $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
-            ]
-            [$a_4$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_4$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_4$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0]]]
+                    $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
+                ]
+                [$a_4$ [$a_4$ [$a_4$]]]
             ]
         \end{forest}
     \end{center}
@@ -475,7 +481,7 @@ Update $a_4$ to $a_5$
 
 \bigbreak
 
-\subsection*{Case 1: There is right sibling}
+\subsection*{Case 2: There is right sibling}
 
 \bigbreak
 
@@ -490,11 +496,11 @@ Update $a_2$ to $a_5$
     \begin{center}
         \begin{forest}
             for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
-            [$H_3$, draw=blue600, top color=blue600!0, bottom color=blue600!0
+            [$H_3$
             [
-            $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
-            ]
-            [$a_4$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_4$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_4$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0]]]
+                    $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
+                ]
+                [$a_4$ [$a_4$ [$a_4$]]]
             ]
         \end{forest}
     \end{center}
@@ -524,9 +530,38 @@ Update $a_2$ to $a_5$
 
 \bigbreak
 
+\subsubsection{Pseudocode}
+
+\begin{algorithm}[H]
+    \caption{LeanIMT Update algorithm}\label{update}
+    \begin{algorithmic}[1]
+        \Procedure{Update}{$index$, $newLeaf$}
+        \State $node\gets newLeaf$
+        \For{level from 0 to depth - 1}
+        \State nodes[level][index] $\gets$ node
+        \If{index \textbf{is odd}} \Comment{It's a right node}
+        \State sibling $\gets$ nodes[level][index - 1]
+        \State node $\gets$ \textbf{hash}(sibling, node)
+        \Else \Comment{It's a left node}
+        \State sibling $\gets$ nodes[level][index + 1]
+        \If{sibling exists} \Comment{It's a left node with a right sibling}
+        \State node $\gets$ hash(node, sibling)
+        \EndIf
+        \EndIf
+        \State index $\gets$ $\lfloor index/2 \rfloor$ \Comment{Divides the index by 2 and discards the remainder.}
+        \EndFor
+        \State nodes[depth] $\gets$ [node] \Comment{Store the new root at the top level}
+        \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+
+\bigbreak
+
 \subsection{Remove}
 
 The \textit{remove} function is the same as the \textit{update} function but the value used to update is 0.
+
+You can use a value other than 0, the idea is to use a value that is not a possible value for a correct member in the list.
 
 \bigbreak
 
@@ -582,6 +617,17 @@ Remove $a_2$
 \end{multicols}
 
 \bigbreak
+
+\subsubsection{Pseudocode}
+
+\begin{algorithm}[H]
+    \caption{LeanIMT Remove algorithm}\label{remove}
+    \begin{algorithmic}[1]
+        \Procedure{Remove}{$index$}
+        \State $update(index, 0)$
+        \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
 
 \bigbreak
 
