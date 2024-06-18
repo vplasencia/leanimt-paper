@@ -397,9 +397,6 @@ Insert $a_4$ and $a_5$.
     \caption{LeanIMT InsertMany algorithm}\label{insertMany}
     \begin{algorithmic}[1]
         \Procedure{InsertMany}{$leaves$: List of nodes}
-        \If{$leaves$ length $= 0$}
-        \State THROW ERROR "There are no leaves to add"
-        \EndIf
         \State $startIndex$ $\gets$ $\lfloor size/2 \rfloor$ \Comment{Divides the size of the tree by 2 and discards the remainder.}
         \State Add $leaves$ to the tree leaves
 
