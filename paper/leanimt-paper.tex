@@ -397,7 +397,7 @@ Insert $a_4$ and $a_5$.
     \caption{LeanIMT InsertMany algorithm}\label{insertMany}
     \begin{algorithmic}[1]
         \Procedure{InsertMany}{$leaves$: List of nodes}
-        \If{$leaves$ lenght $= 0$}
+        \If{$leaves$ length $= 0$}
         \State THROW ERROR "There are no leaves to add"
         \EndIf
         \State $startIndex$ $\gets$ $\lfloor size/2 \rfloor$ \Comment{Divides the size of the tree by 2 and discards the remainder.}
@@ -408,7 +408,6 @@ Insert $a_4$ and $a_5$.
         \For{index from $startIndex$ to numberOfNodes - 1}
         \State rightNode $\gets$ nodes[level][index * 2 + 1] \Comment{Get the right node if exists.}
         \State leftNode $\gets$ nodes[level][index * 2] \Comment{Get the left node if exists.}
-
         \If{$rightNode$ exists}
         \State parentNode $\gets$ $hash(leftNode, rightNode)$
         \Else
@@ -635,7 +634,63 @@ Remove $a_2$
 
 \bigbreak
 
+\begin{algorithm}[H]
+    \caption{LeanIMT generateProof algorithm}\label{generateProof}
+    \begin{algorithmic}[1]
+        \Procedure{generateProof}{$index$}
+        \State siblings $\gets$ empty list
+        \State path $\gets$ empty list
+        \For{level from 0 to depth - 1}
+        \State isRightNode $\gets$ index is odd
+        \If{isRightNode is true} \Comment{It's a right node}
+        \State siblingIndex $\gets$ index - 1
+        \Else \Comment{It's a left node}
+        \State siblingIndex $\gets$ index + 1
+        \EndIf
+        \State sibling $\gets$ nodes[level][siblingIndex]
+        \If{$sibling$ exists}
+        \State add isRightNode to path
+        \State add sibling to siblings
+        \EndIf
+        \State index $\gets$ $\lfloor index/2 \rfloor$ \Comment{Divides the index by 2 and discards the remainder.}
+        \EndFor
+        \State leaf $\gets$ leaves[index]
+        \State index $\gets$ reverse path and use the list as a binary number and get the decimal representation
+        \State siblings $\gets$ leaves[index]
+        \State proof $\gets$ $\{root, leaf , index, siblings \}$
+        \State \Return proof
+        \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+
+\bigbreak
+
 \subsection{Verify Merkle Proof}
+
+\bigbreak
+
+\begin{algorithm}[H]
+    \caption{LeanIMT verifyProof algorithm}\label{verifyProof}
+    \begin{algorithmic}[1]
+        \Procedure{verifyProof}{$index$}
+        \State \{ root, leaf, siblings, index \} $\gets$ proof \Comment{Deconstruct the proof}
+        \State node $\gets$ leaf
+        \For{i from 0 to siblings.length - 1}
+        \State isOdd $\gets$ devide index by 2 $i$ times and check if the result is odd
+        \If{isOdd is true} \Comment{$node$ is a right child}
+        \State node $\gets$ $hash(siblings[i], node)$
+        \Else \Comment{It's a left node}
+        \State node $\gets$ $hash(node, siblings[i])$
+        \EndIf
+        \EndFor
+        \If{$root$ is equal $node$}
+        \State \Return true
+        \Else
+        \State \Return false
+        \EndIf
+        \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
 
 \bigbreak
 
