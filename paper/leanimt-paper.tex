@@ -20,6 +20,8 @@
 \usepackage{algorithm}% http://ctan.org/pkg/algorithms
 \usepackage{algpseudocode}% http://ctan.org/pkg/algorithmicx
 
+\usepackage{amsmath}
+
 % Add dots to the table of contents
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
 \renewcommand{\cftsubsecleader}{\cftdotfill{\cftdotsep}}
@@ -131,6 +133,12 @@ The LeanIMT has two properties:
 1. Every node with two children is the hash of its two child nodes.
 
 2. Every node with one child has the same value as its child node.
+
+The tree is always built from the leaves to the root. 
+
+The tree will always be balanced by construction.
+
+In a LeanIMT a node is either a leaf or a parent.
 
 \bigbreak
 
@@ -338,9 +346,63 @@ If we add $a_5$.
 
 \bigbreak
 
+\subsubsection{Correctness}
+
+The idea is to prove that after inserting a new node to the LeanIMT, the tree keeps all the properties.
+
+The Mathematical Induction method will be used to prove the correctness of the algorithm.
+
+$n$: Number of leaves
+
+$T$: LeanIMT Tree
+
+$n=0$
+
+If the tree is empty, the Insert function returns a new node with the value of the leaf. This satisfies the LeanIMT rpoperties because the node does not have children. (Trivial case)
+
+$n \Rightarrow n+1$
+
+Let's assume that with $n$ nodes, the tree T is a correct LeanIMT and prove that with $n+10$ nodes, T is still a correct LeanIMT. (Inductive step)
+
+The new node is always added at the end of the list of nodes.
+
+To insert a new node, there are two possible cases:
+
+1. When the new node is a left node
+
+2. When the new node is a right node
+
+Case 1
+
+If the new node is a left node, it means that there were an even number of nodes.
+
+Then, sice it's a left node, the parents has only one child and the parent has the same value as the child which is is the new node. Then all the ancestors will be constructed following the two properties of the LeanIMT.
+
+Since T was a correct LeanIMT with $n$ nodes and inserting a new node that is a left node follows the properties of the LeanIMT $\Rightarrow$ the entire tree T is still a correct LeanIMT.
+
+Case 2
+
+If the new node is a right node, it means that there were an odd number of nodes.
+
+Since it is a right node, the value of the parent will be the hash of the left child with the right child which is the new node. Then all the ancestors will be constructed following the two properties of the LeanIMT.
+
+Since T was a correct LeanIMT with $n$ nodes and inserting a new node that is a left node follows the properties of the LeanIMT $\Rightarrow$ the entire tree T is still a correct LeanIMT.
+
+Then for the two cases 1 and 2 the Insert algorithm follows the LeanIMT properties $\Rightarrow$ the Insert algorithm is correct.
+
+\bigbreak
+
+\subsubsection{Time complexity}
+
+n: Number of leaves.
+
+The time complexity of the Insertion function is $\boldsymbol{O(\log n)}$.
+
+Every time a new node is added is necessary to update or add ancestors until the root of the tree.
+
 \subsection{Batch Insertion}
 
-Performing the insertion in bulk rather than individually using a loop can lead to significant performance improvements. This optimization stems from the reduced number of hashing operations required. By inserting many elements at once, the algorithm can minimize redundant computations and manage memory more efficiently, resulting in faster execution and better overall performance.
+Performing the insertion in bulk rather than individually using a loop can lead to significant performance improvements because the number of hashing operations is reduced.
 
 \bigbreak
 
@@ -348,7 +410,7 @@ When inserting $n$ members, all levels will be updated $n$ times if the batch in
 
 The core idea behind the batch insertion algorithm is to update each level only once even if there are many members to be inserted.
 
-The algorithm will go through the nodes that are necessary to update the next level of the tree. The other nodes in the tree won't be used or changed.
+The algorithm will go through the nodes that are necessary to update the next level of the tree. The other nodes in the tree will not change.
 
 \bigbreak
 
@@ -422,6 +484,129 @@ Insert $a_4$ and $a_5$.
         \EndProcedure
     \end{algorithmic}
 \end{algorithm}
+
+\bigbreak
+
+\subsubsection{Correctness}
+
+\bigbreak
+
+\subsubsection{Time complexity}
+
+$n$: Number of leaves in the tree.
+
+$d$: Tree depth.
+
+$m$: Number of leaves to insert.
+
+\bigbreak
+
+Number of operations when inserting elements in batch: 
+
+\bigbreak
+
+$\lceil m \rceil + \lceil \frac{m}{2} \rceil + \lceil \frac{m}{4} \rceil + ... + \lceil \frac{m}{2^d} \rceil$
+
+\bigbreak
+
+That is the same as $\sum_{k=0}^{d} \lceil \frac{m}{2^k} \rceil$
+
+\bigbreak
+
+$\lceil m \rceil \leq m + 1$ then $\lceil \frac{m}{2^k} \rceil \leq \frac{m}{2^k} + 1$ 
+
+\bigbreak
+
+$\sum_{k=0}^{d} \lceil \frac{m}{2^k} \rceil \leq \sum_{k=0}^{d} (\frac{m}{2^k} + 1)$ 
+
+\bigbreak
+
+% phantom is used to hide the information of the expression. It
+% is used here to create an empty space with the same size as the expression inside the braces.
+
+$\phantom{\sum_{k=0}^{d} \lceil \frac{m}{2^k} \rceil} \leq \sum_{k=0}^{d} \frac{m}{2^k} + \sum_{k=0}^{d} 1$ 
+
+\bigbreak
+
+$\phantom{\sum_{k=0}^{d} \lceil \frac{m}{2^k} \rceil} \leq 2m + O(\log (n+m))$ 
+
+\bigbreak
+
+$\phantom{\sum_{k=0}^{d} \lceil \frac{m}{2^k} \rceil} \leq O(m) + O(\log (n+m))$ 
+
+\bigbreak
+
+$\phantom{\sum_{k=0}^{d} \lceil \frac{m}{2^k} \rceil} \Rightarrow \boxed{O(m)}$ 
+
+\bigbreak
+
+$\sum_{k=0}^{d} \frac{m}{2^k} = m \sum_{k=0}^{d} \frac{1}{2^k} \approx m * 2 \Rightarrow 2m$
+
+\bigbreak
+
+$\sum_{k=0}^{d} \frac{1}{2^k}$ (Geometric series)
+
+\bigbreak
+
+$|r| < 1$; $r = \frac{1}{2}$
+
+\bigbreak
+
+$\sum_{k=0}^{\infty} a * r ^ n = \frac{a}{1-r} = \frac{1}{1-\frac{1}{2}}$
+
+\bigbreak
+
+$\phantom{\sum_{k=0}^{\infty} a * r ^ n = \frac{a}{1-r}} = \frac{1}{2}$
+
+\bigbreak
+
+$\phantom{\sum_{k=0}^{\infty} a * r ^ n = \frac{a}{1-r}} = 2$
+
+\bigbreak
+
+$\sum_{k=0}^{d} 1 = \frac{a}{1-r} = d + 1$
+
+\bigbreak
+
+$\phantom{\sum_{k=0}^{d} 1 = \frac{a}{1-r}} = \log (n+m) + 1$
+
+\bigbreak
+
+$\phantom{\sum_{k=0}^{d} 1 = \frac{a}{1-r}} \Rightarrow O(\log (n+m))$
+
+\bigbreak
+
+Then the time complexity of the \textit{InsertMany} function is $\boldsymbol{O(m)}$.
+
+\bigbreak
+
+\textbf{Loop Insertion vs Batch Insertion}
+
+\bigbreak
+
+The time complexity of the Insertion function using a loop is $O(\log (n+m))$.
+
+\bigbreak
+
+Going to the root to update or add nodes requires $ \log (n+m)$ number of operations. 
+
+If we go to the root to update or add nodes $m$ times (one time per leaf to add) then we will have:
+
+\bigbreak
+
+$m * \log (n+m) \Rightarrow \boxed{O(m \log (n+m))}$
+
+\bigbreak
+
+$\Rightarrow$ Time complexity Loop Insertion is superlinear: $\boldsymbol{O(m \log (n+m))}$
+
+\bigbreak
+
+$\Rightarrow$ Time complexity Batch Insertion (\textit{InsertMany} function) is linear: $\boldsymbol{O(m)}$ (linear)
+
+\bigbreak
+
+$\Rightarrow$ In terms of time complexity, it is more efficient to use the \textit{InsertMany} function than the \textit{Insert} function in a loop.
 
 \bigbreak
 
@@ -558,6 +743,14 @@ Update $a_2$ to $a_5$
 
 \bigbreak
 
+\subsubsection{Correctness}
+
+\bigbreak
+
+\subsubsection{Time complexity}
+
+\bigbreak
+
 \subsection{Remove}
 
 The \textit{remove} function is the same as the \textit{update} function but the value used to update is 0.
@@ -632,6 +825,14 @@ Remove $a_2$
 
 \bigbreak
 
+\subsubsection{Correctness}
+
+\bigbreak
+
+\subsubsection{Time complexity}
+
+\bigbreak
+
 \subsection{Generate Merkle Proof}
 
 TODO: Add description with diagrams.
@@ -669,6 +870,14 @@ TODO: Add description with diagrams.
 
 \bigbreak
 
+\subsubsection{Correctness}
+
+\bigbreak
+
+\subsubsection{Time complexity}
+
+\bigbreak
+
 \subsection{Verify Merkle Proof}
 
 TODO: Add description with diagrams.
@@ -697,6 +906,14 @@ TODO: Add description with diagrams.
         \EndProcedure
     \end{algorithmic}
 \end{algorithm}
+
+\bigbreak
+
+\subsubsection{Correctness}
+
+\bigbreak
+
+\subsubsection{Time complexity}
 
 \bigbreak
 
