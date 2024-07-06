@@ -134,7 +134,7 @@ The LeanIMT has two properties:
 
 2. Every node with one child has the same value as its child node.
 
-The tree is always built from the leaves to the root. 
+The tree is always built from the leaves to the root.
 
 The tree will always be balanced by construction.
 
@@ -501,7 +501,7 @@ $m$: Number of leaves to insert.
 
 \bigbreak
 
-Number of operations when inserting elements in batch: 
+Number of operations when inserting elements in batch:
 
 \bigbreak
 
@@ -513,30 +513,30 @@ That is the same as $\sum_{k=0}^{d} \lceil \frac{m}{2^k} \rceil$
 
 \bigbreak
 
-$\lceil m \rceil \leq m + 1$ then $\lceil \frac{m}{2^k} \rceil \leq \frac{m}{2^k} + 1$ 
+$\lceil m \rceil \leq m + 1$ then $\lceil \frac{m}{2^k} \rceil \leq \frac{m}{2^k} + 1$
 
 \bigbreak
 
-$\sum_{k=0}^{d} \lceil \frac{m}{2^k} \rceil \leq \sum_{k=0}^{d} (\frac{m}{2^k} + 1)$ 
+$\sum_{k=0}^{d} \lceil \frac{m}{2^k} \rceil \leq \sum_{k=0}^{d} (\frac{m}{2^k} + 1)$
 
 \bigbreak
 
 % phantom is used to hide the information of the expression. It
 % is used here to create an empty space with the same size as the expression inside the braces.
 
-$\phantom{\sum_{k=0}^{d} \lceil \frac{m}{2^k} \rceil} \leq \sum_{k=0}^{d} \frac{m}{2^k} + \sum_{k=0}^{d} 1$ 
+$\phantom{\sum_{k=0}^{d} \lceil \frac{m}{2^k} \rceil} \leq \sum_{k=0}^{d} \frac{m}{2^k} + \sum_{k=0}^{d} 1$
 
 \bigbreak
 
-$\phantom{\sum_{k=0}^{d} \lceil \frac{m}{2^k} \rceil} \leq 2m + O(\log (n+m))$ 
+$\phantom{\sum_{k=0}^{d} \lceil \frac{m}{2^k} \rceil} \leq 2m + O(\log (n+m))$
 
 \bigbreak
 
-$\phantom{\sum_{k=0}^{d} \lceil \frac{m}{2^k} \rceil} \leq O(m) + O(\log (n+m))$ 
+$\phantom{\sum_{k=0}^{d} \lceil \frac{m}{2^k} \rceil} \leq O(m) + O(\log (n+m))$
 
 \bigbreak
 
-$\phantom{\sum_{k=0}^{d} \lceil \frac{m}{2^k} \rceil} \Rightarrow \boxed{O(m)}$ 
+$\phantom{\sum_{k=0}^{d} \lceil \frac{m}{2^k} \rceil} \Rightarrow \boxed{O(m)}$
 
 \bigbreak
 
@@ -588,7 +588,7 @@ The time complexity of the Insertion function using a loop is $O(\log (n+m))$.
 
 \bigbreak
 
-Going to the root to update or add nodes requires $ \log (n+m)$ number of operations. 
+Going to the root to update or add nodes requires $ \log (n+m)$ number of operations.
 
 If we go to the root to update or add nodes $m$ times (one time per leaf to add) then we will have:
 
@@ -835,7 +835,147 @@ Remove $a_2$
 
 \subsection{Generate Merkle Proof}
 
-TODO: Add description with diagrams.
+There are two cases:
+
+1. When the leaf is the last leaf and a left node.
+
+2. Other cases
+
+\bigbreak
+
+$d$: Depth of the tree
+
+We will always see one of these two cases. When you want to generate the proof for the case 1, there will always be one node in the siblings list, for the case 2 there will always be $\lceil d \rceil$ number of nodes.
+
+\bigbreak
+
+\subsection*{Case 1: The leaf is the last leaf and a left node}
+
+\bigbreak
+
+If we want to generate a proof for the node $a_4$.
+
+\bigbreak
+
+\begin{multicols}{2}
+    \vfill
+    \columnbreak
+    \vspace*{\fill}
+    \begin{center}
+        \begin{forest}
+            for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
+            [$H_3$
+            [
+                    $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
+                ]
+                [$a_4$ [$a_4$ [$a_4$]]]
+            ]
+        \end{forest}
+    \end{center}
+    \begin{center}
+        \textit{LeanIMT to generate a proof for $a_4$}
+    \end{center}
+    % Fill a space
+    \vfill
+    \columnbreak
+    \vspace*{\fill}
+    % Fill a space
+    \begin{center}
+        \begin{forest}
+            for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
+            [$H_3$, draw=blue600, top color=blue600!0, bottom color=blue600!0
+            [
+            $H_2$ , draw=blue600, top color=blue600!0, bottom color=blue600!0 [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
+            ]
+            [$a_4$ [$a_4$ [$a_4$ , draw=blue600, top color=blue600!0, bottom color=blue600!0]]]
+            ]
+        \end{forest}
+    \end{center}
+    \begin{center}
+        \textit{Nodes used to generate a proof for $a_4$}
+    \end{center}
+\end{multicols}
+
+\bigbreak
+
+path: [1]
+
+Merkle Proof: \{
+
+root: $H_3$
+
+leaf: $a_4$
+
+index: 1
+
+siblings: [$H_2$]
+
+\}
+
+\bigbreak
+
+\subsection*{Case 2: Other cases}
+
+\bigbreak
+
+If we want to generate a proof for the node $a_3$.
+
+\bigbreak
+
+\begin{multicols}{2}
+    \vfill
+    \columnbreak
+    \vspace*{\fill}
+    \begin{center}
+        \begin{forest}
+            for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
+            [$H_3$
+            [
+                    $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
+                ]
+                [$a_4$ [$a_4$ [$a_4$]]]
+            ]
+        \end{forest}
+    \end{center}
+    \begin{center}
+        \textit{LeanIMT to generate a proof for $a_3$}
+    \end{center}
+    % Fill a space
+    \vfill
+    \columnbreak
+    \vspace*{\fill}
+    % Fill a space
+    \begin{center}
+        \begin{forest}
+            for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
+            [$H_3$, draw=blue600, top color=blue600!0, bottom color=blue600!0
+            [
+            $H_2$ [$H_0$, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_0$] [$a_1$]] [$H_1$ [$a_2$, draw=blue600, top color=blue600!0, bottom color=blue600!0] [$a_3$ , draw=blue600, top color=blue600!0, bottom color=blue600!0]]
+            ]
+            [$a_4$, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_4$ [$a_4$]]]
+            ]
+        \end{forest}
+    \end{center}
+    \begin{center}
+        \textit{Nodes used to generate a proof for $a_3$}
+    \end{center}
+\end{multicols}
+
+\bigbreak
+
+path: [1, 1, 0]
+
+Merkle Proof: \{
+
+root: $H_3$
+
+leaf: $a_3$
+
+index: 3
+
+siblings: [$a_2$, $H_0$, $a_2$]
+
+\}
 
 \bigbreak
 
@@ -843,8 +983,8 @@ TODO: Add description with diagrams.
     \caption{LeanIMT generateProof algorithm}\label{generateProof}
     \begin{algorithmic}[1]
         \Procedure{generateProof}{$index$}
-        \State siblings $\gets$ empty list
-        \State path $\gets$ empty list
+        \State siblings $\gets$ empty list \Comment{List to store the nodes necessary to rebuild the root.}
+        \State path $\gets$ empty list \Comment{List of $0$s or $1$s to help rebuild the root. $0$ if the current node is a left node and the sibling is a right node and $1$ otherwise.}
         \For{level from 0 to depth - 1}
         \State isRightNode $\gets$ index is odd
         \If{isRightNode is true} \Comment{It's a right node}
@@ -880,7 +1020,143 @@ TODO: Add description with diagrams.
 
 \subsection{Verify Merkle Proof}
 
-TODO: Add description with diagrams.
+There are two cases:
+
+1. When the leaf is the last leaf and a left node.
+
+2. Other cases
+
+\bigbreak
+
+\subsection*{Case 1: The leaf is the last leaf and a left node}
+
+\bigbreak
+
+If we want to generate a proof for the node $a_4$.
+
+\bigbreak
+
+\begin{multicols}{2}
+    \vfill
+    \columnbreak
+    \vspace*{\fill}
+    \begin{center}
+        \begin{forest}
+            for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
+            [$H_3$
+            [
+                    $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
+                ]
+                [$a_4$ [$a_4$ [$a_4$]]]
+            ]
+        \end{forest}
+    \end{center}
+    \begin{center}
+        \textit{LeanIMT to verify a proof for $a_4$}
+    \end{center}
+    % Fill a space
+    \vfill
+    \columnbreak
+    \vspace*{\fill}
+    % Fill a space
+    \begin{center}
+        \begin{forest}
+            for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
+            [$H_3$, draw=blue600, top color=blue600!0, bottom color=blue600!0
+            [
+            $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
+            ]
+            [$a_4$ [$a_4$ [$a_4$]]]
+            ]
+        \end{forest}
+    \end{center}
+    \begin{center}
+        \textit{Nodes rebuilt to verify a proof for $a_4$}
+    \end{center}
+\end{multicols}
+
+\bigbreak
+
+path: [1]
+
+Merkle Proof: \{
+
+root: $H_3$
+
+leaf: $a_4$
+
+index: 1
+
+siblings: [$H_2$]
+
+\}
+
+\bigbreak
+
+\subsection*{Case 2: Other cases}
+
+\bigbreak
+
+If we want to verify a proof for the node $a_3$.
+
+\bigbreak
+
+\begin{multicols}{2}
+    \vfill
+    \columnbreak
+    \vspace*{\fill}
+    \begin{center}
+        \begin{forest}
+            for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
+            [$H_3$
+            [
+                    $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
+                ]
+                [$a_4$ [$a_4$ [$a_4$]]]
+            ]
+        \end{forest}
+    \end{center}
+    \begin{center}
+        \textit{LeanIMT to verify a proof for $a_3$}
+    \end{center}
+    % Fill a space
+    \vfill
+    \columnbreak
+    \vspace*{\fill}
+    % Fill a space
+    \begin{center}
+        \begin{forest}
+            for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
+            [$H_3$, draw=blue600, top color=blue600!0, bottom color=blue600!0
+            [
+            $H_2$, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$H_0$ [$a_0$] [$a_1$]] [$H_1$, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_2$] [$a_3$]]
+            ]
+            [$a_4$ [$a_4$ [$a_4$]]]
+            ]
+        \end{forest}
+    \end{center}
+    \begin{center}
+        \textit{Nodes rebuilt to verify a proof for $a_3$}
+    \end{center}
+\end{multicols}
+
+\bigbreak
+
+path: [1, 1, 0]
+
+Merkle Proof: \{
+
+root: $H_3$
+
+leaf: $a_3$
+
+index: 3
+
+siblings: [$a_2$, $H_0$, $a_2$]
+
+\}
+
+\bigbreak
 
 \bigbreak
 
