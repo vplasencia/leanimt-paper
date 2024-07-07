@@ -394,11 +394,43 @@ Then for the two cases 1 and 2 the Insert algorithm follows the LeanIMT properti
 
 \subsubsection{Time complexity}
 
-n: Number of leaves.
+\bigbreak
 
-The time complexity of the Insertion function is $\boldsymbol{O(\log n)}$.
+$n$: Number of leaves in the tree.
 
-Every time a new node is added is necessary to update or add ancestors until the root of the tree.
+$d$: Tree depth.
+
+\bigbreak
+
+Every time a new node is added, it is necessary to update or add the ancestors up to the root of the tree.
+
+\bigbreak
+\label{InsertProof}
+Number of operations when adding a leaf: $\lceil d \rceil$
+
+\bigbreak
+
+$\lceil d \rceil \leq d + 1$
+
+\bigbreak
+
+$\phantom{\lceil m \rceil} \leq O(\log n) + 1$
+
+\bigbreak
+
+$\phantom{\lceil m \rceil} \Rightarrow \boxed{O(\log n)}$
+
+\bigbreak
+
+$d = \lceil \log (n) \rceil \leq \log (n) + 1$
+
+\bigbreak
+
+$\phantom{d = \lceil \log (n) \rceil} \Rightarrow O(\log n)$
+
+\bigbreak
+
+The time complexity of the \textit{Insert} function is $\boldsymbol{O(\log n)}$.
 
 \subsection{Batch Insertion}
 
@@ -568,13 +600,19 @@ $\sum_{k=0}^{d} 1 = \frac{a}{1-r} = d + 1$
 
 \bigbreak
 
-$\phantom{\sum_{k=0}^{d} 1 = \frac{a}{1-r}} = \log (n+m) + 1$
+$\phantom{\sum_{k=0}^{d} 1 = \frac{a}{1-r}} = O(\log (n+m)) + 1$
 
 \bigbreak
 
 $\phantom{\sum_{k=0}^{d} 1 = \frac{a}{1-r}} \Rightarrow O(\log (n+m))$
 
 \bigbreak
+
+$d = \lceil \log (n+m) \rceil \leq \log (n+m) + 1$
+
+\bigbreak
+
+$\phantom{d = \lceil \log (n + m) \rceil} \Rightarrow O(\log (n+m))$
 
 Then the time complexity of the \textit{InsertMany} function is $\boldsymbol{O(m)}$.
 
@@ -748,6 +786,24 @@ Update $a_2$ to $a_5$
 \bigbreak
 
 \subsubsection{Time complexity}
+
+\bigbreak
+
+$n$: Number of leaves in the tree.
+
+$d$: Tree depth.
+
+\bigbreak
+
+Every time a leaf is updated, it is necessary to update all the ancestors up to the root of the tree.
+
+\bigbreak
+
+Number of operations when updating a leaf: $\lceil d \rceil$
+
+This proof is the same as the \hyperref[InsertProof]{proof of the time complexity of the Insert function}.
+
+The time complexity of the \textit{Update} function is $\boldsymbol{O(\log n)}$.
 
 \bigbreak
 
@@ -1018,6 +1074,24 @@ siblings: [$a_2$, $H_0$, $a_2$]
 
 \bigbreak
 
+$n$: Number of leaves in the tree.
+
+$d$: Tree depth.
+
+\bigbreak
+
+To generate a Merkle Proof it is necessary to visit all the ancestors of the leaf up to the root of the tree.
+
+\bigbreak
+
+Number of operations to generate a Merkle Proof: $\lceil d \rceil$
+
+This proof is the same as the \hyperref[InsertProof]{proof of the time complexity of the Insert function}.
+
+The time complexity of the \textit{generateProof} function is $\boldsymbol{O(\log n)}$.
+
+\bigbreak
+
 \subsection{Verify Merkle Proof}
 
 There are two cases:
@@ -1190,6 +1264,24 @@ siblings: [$a_2$, $H_0$, $a_2$]
 \bigbreak
 
 \subsubsection{Time complexity}
+
+\bigbreak
+
+$n$: Number of leaves in the tree.
+
+$d$: Tree depth.
+
+\bigbreak
+
+To verify a Merkle Proof it is necessary to visit (rebuild) all the ancestors of the leaf up to the root of the tree.
+
+\bigbreak
+
+Number of operations to verify a Merkle Proof: $\lceil d \rceil$
+
+This proof is the same as the \hyperref[InsertProof]{proof of the time complexity of the Insert function}.
+
+The time complexity of the \textit{verifyProof} function is $\boldsymbol{O(\log n)}$.
 
 \bigbreak
 
