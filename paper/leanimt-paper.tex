@@ -224,46 +224,47 @@ $V = \{a_0, a_1, a_2, a_3, H_0, H_1, H_2\}$
 $E = \{(a_0, H_0), (a_1, H_0), (a_2, H_1), (a_3, H_1), (H_0, H_2), (H_1, H_2)\}$
 
 \bigbreak
-\bigbreak
-\bigbreak
 
-\begin{multicols}{2}
-    \vfill
-    \columnbreak
-    \vspace*{\fill}
-    \begin{center}
-        \begin{forest}
-            for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
-            [$H_2$
-            [$H_0$
-                    [$a_0$]
-                        [$a_1$]
+% \vbox is used to group the diagrams next to each other
+\vbox{
+    \begin{multicols}{2}
+        \vfill
+        \columnbreak
+        \vspace*{\fill}
+        \begin{center}
+            \begin{forest}
+                for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
+                [$H_2$
+                [$H_0$
+                        [$a_0$]
+                            [$a_1$]
+                    ]
+                    [$H_1$
+                        [$a_2$]
+                            [$a_3$]
+                    ]
                 ]
-                [$H_1$
-                    [$a_2$]
-                        [$a_3$]
+            \end{forest}
+        \end{center}
+        \begin{center}
+            \textit{Before inserting $a_4$}
+        \end{center}
+        \begin{center}
+            \begin{forest}
+                for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
+                [$H_3$, draw=blue600, top color=blue600!0, bottom color=blue600!0
+                [
+                $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
                 ]
-            ]
-        \end{forest}
-    \end{center}
-    \begin{center}
-        \textit{Before inserting $a_4$}
-    \end{center}
-    \begin{center}
-        \begin{forest}
-            for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
-            [$H_3$, draw=blue600, top color=blue600!0, bottom color=blue600!0
-            [
-            $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
-            ]
-            [$a_4$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_4$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_4$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0]]]
-            ]
-        \end{forest}
-    \end{center}
-    \begin{center}
-        \textit{After inserting $a_4$}
-    \end{center}
-\end{multicols}
+                [$a_4$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_4$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_4$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0]]]
+                ]
+            \end{forest}
+        \end{center}
+        \begin{center}
+            \textit{After inserting $a_4$}
+        \end{center}
+    \end{multicols}
+}
 
 \bigbreak
 
@@ -275,48 +276,50 @@ If we add $a_5$.
 
 \bigbreak
 
-\begin{multicols}{2}
+\vbox{
+    \begin{multicols}{2}
 
-    % Fill a space
-    \vfill
-    \columnbreak
-    \vspace*{\fill}
-    % Fill a space
+        % Fill a space
+        \vfill
+        \columnbreak
+        \vspace*{\fill}
+        % Fill a space
 
-    \begin{center}
-        \begin{forest}
-            for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
-            [$H_3$
-            [
-                    $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
+        \begin{center}
+            \begin{forest}
+                for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
+                [$H_3$
+                [
+                        $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
+                    ]
+                    [$a_4$ [$a_4$ [$a_4$]]]
                 ]
-                [$a_4$ [$a_4$ [$a_4$]]]
-            ]
-        \end{forest}
-    \end{center}
-    \begin{center}
-        \textit{Before inserting $a_5$}
-    \end{center}
-    % Fill a space
-    \vfill
-    \columnbreak
-    \vspace*{\fill}
-    % Fill a space
-    \begin{center}
-        \begin{forest}
-            for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
-            [$H_5$, draw=blue600, top color=blue600!0, bottom color=blue600!0
-            [
-            $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
-            ]
-            [$H_4$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$H_4$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_4$] [$a_5$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0]]]
-            ]
-        \end{forest}
-    \end{center}
-    \begin{center}
-        \textit{After inserting $a_5$}
-    \end{center}
-\end{multicols}
+            \end{forest}
+        \end{center}
+        \begin{center}
+            \textit{Before inserting $a_5$}
+        \end{center}
+        % Fill a space
+        \vfill
+        \columnbreak
+        \vspace*{\fill}
+        % Fill a space
+        \begin{center}
+            \begin{forest}
+                for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
+                [$H_5$, draw=blue600, top color=blue600!0, bottom color=blue600!0
+                [
+                $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
+                ]
+                [$H_4$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$H_4$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_4$] [$a_5$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0]]]
+                ]
+            \end{forest}
+        \end{center}
+        \begin{center}
+            \textit{After inserting $a_5$}
+        \end{center}
+    \end{multicols}
+}
 
 \bigbreak
 
@@ -450,43 +453,45 @@ Insert $a_4$ and $a_5$.
 
 \bigbreak
 
-\begin{multicols}{2}
-    \vfill
-    \columnbreak
-    \vspace*{\fill}
-    \begin{center}
-        \begin{forest}
-            for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
-            [$H_2$
-            [$H_0$
-                    [$a_0$]
-                        [$a_1$]
+\vbox{
+    \begin{multicols}{2}
+        \vfill
+        \columnbreak
+        \vspace*{\fill}
+        \begin{center}
+            \begin{forest}
+                for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
+                [$H_2$
+                [$H_0$
+                        [$a_0$]
+                            [$a_1$]
+                    ]
+                    [$H_1$
+                        [$a_2$]
+                            [$a_3$]
+                    ]
                 ]
-                [$H_1$
-                    [$a_2$]
-                        [$a_3$]
+            \end{forest}
+        \end{center}
+        \begin{center}
+            \textit{Before inserting $a_4$ and $a_5$}
+        \end{center}
+        \begin{center}
+            \begin{forest}
+                for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
+                [$H_4$, draw=blue600, top color=blue600!0, bottom color=blue600!0
+                [
+                $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
                 ]
-            ]
-        \end{forest}
-    \end{center}
-    \begin{center}
-        \textit{Before inserting $a_4$ and $a_5$}
-    \end{center}
-    \begin{center}
-        \begin{forest}
-            for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
-            [$H_4$, draw=blue600, top color=blue600!0, bottom color=blue600!0
-            [
-            $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
-            ]
-            [$H_3$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$H_3$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_4$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0] [$a_5$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0]]]
-            ]
-        \end{forest}
-    \end{center}
-    \begin{center}
-        \textit{After inserting $a_4$ and $a_5$}
-    \end{center}
-\end{multicols}
+                [$H_3$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$H_3$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_4$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0] [$a_5$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0]]]
+                ]
+            \end{forest}
+        \end{center}
+        \begin{center}
+            \textit{After inserting $a_4$ and $a_5$}
+        \end{center}
+    \end{multicols}
+}
 
 \bigbreak
 
@@ -664,44 +669,46 @@ Update $a_4$ to $a_5$
 
 \bigbreak
 
-\begin{multicols}{2}
-    \vfill
-    \columnbreak
-    \vspace*{\fill}
-    \begin{center}
-        \begin{forest}
-            for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
-            [$H_3$
-            [
-                    $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
+\vbox{
+    \begin{multicols}{2}
+        \vfill
+        \columnbreak
+        \vspace*{\fill}
+        \begin{center}
+            \begin{forest}
+                for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
+                [$H_3$
+                [
+                        $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
+                    ]
+                    [$a_4$ [$a_4$ [$a_4$]]]
                 ]
-                [$a_4$ [$a_4$ [$a_4$]]]
-            ]
-        \end{forest}
-    \end{center}
-    \begin{center}
-        \textit{Before updating $a_4$}
-    \end{center}
-    % Fill a space
-    \vfill
-    \columnbreak
-    \vspace*{\fill}
-    % Fill a space
-    \begin{center}
-        \begin{forest}
-            for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
-            [$H_4$, draw=blue600, top color=blue600!0, bottom color=blue600!0
-            [
-            $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
-            ]
-            [$a_5$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_5$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_5$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0]]]
-            ]
-        \end{forest}
-    \end{center}
-    \begin{center}
-        \textit{After updating $a_4$}
-    \end{center}
-\end{multicols}
+            \end{forest}
+        \end{center}
+        \begin{center}
+            \textit{Before updating $a_4$}
+        \end{center}
+        % Fill a space
+        \vfill
+        \columnbreak
+        \vspace*{\fill}
+        % Fill a space
+        \begin{center}
+            \begin{forest}
+                for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
+                [$H_4$, draw=blue600, top color=blue600!0, bottom color=blue600!0
+                [
+                $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
+                ]
+                [$a_5$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_5$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_5$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0]]]
+                ]
+            \end{forest}
+        \end{center}
+        \begin{center}
+            \textit{After updating $a_4$}
+        \end{center}
+    \end{multicols}
+}
 
 \bigbreak
 
@@ -713,44 +720,46 @@ Update $a_2$ to $a_5$
 
 \bigbreak
 
-\begin{multicols}{2}
-    \vfill
-    \columnbreak
-    \vspace*{\fill}
-    \begin{center}
-        \begin{forest}
-            for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
-            [$H_3$
-            [
-                    $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
+\vbox{
+    \begin{multicols}{2}
+        \vfill
+        \columnbreak
+        \vspace*{\fill}
+        \begin{center}
+            \begin{forest}
+                for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
+                [$H_3$
+                [
+                        $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
+                    ]
+                    [$a_4$ [$a_4$ [$a_4$]]]
+                ]
+            \end{forest}
+        \end{center}
+        \begin{center}
+            \textit{Before updating $a_2$ for $a_5$}
+        \end{center}
+        % Fill a space
+        \vfill
+        \columnbreak
+        \vspace*{\fill}
+        % Fill a space
+        \begin{center}
+            \begin{forest}
+                for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
+                [$H_3$, draw=blue600, top color=blue600!0, bottom color=blue600!0
+                [
+                $H_5$, edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$H_0$ [$a_0$] [$a_1$]] [$H_4$, edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_5$, edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0] [$a_3$]]
                 ]
                 [$a_4$ [$a_4$ [$a_4$]]]
-            ]
-        \end{forest}
-    \end{center}
-    \begin{center}
-        \textit{Before updating $a_2$ for $a_5$}
-    \end{center}
-    % Fill a space
-    \vfill
-    \columnbreak
-    \vspace*{\fill}
-    % Fill a space
-    \begin{center}
-        \begin{forest}
-            for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
-            [$H_3$, draw=blue600, top color=blue600!0, bottom color=blue600!0
-            [
-            $H_5$, edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$H_0$ [$a_0$] [$a_1$]] [$H_4$, edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_5$, edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0] [$a_3$]]
-            ]
-            [$a_4$ [$a_4$ [$a_4$]]]
-            ]
-        \end{forest}
-    \end{center}
-    \begin{center}
-        \textit{After updating $a_2$ for $a_5$}
-    \end{center}
-\end{multicols}
+                ]
+            \end{forest}
+        \end{center}
+        \begin{center}
+            \textit{After updating $a_2$ for $a_5$}
+        \end{center}
+    \end{multicols}
+}
 
 \bigbreak
 
@@ -819,52 +828,54 @@ Remove $a_2$
 
 \bigbreak
 
-\begin{multicols}{2}
-    \vfill
-    \columnbreak
-    \vspace*{\fill}
-    \begin{center}
-        \begin{forest}
-            for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
-            [$H_2$
-            [$H_0$
-                    [$a_0$]
-                        [$a_1$]
+\vbox{
+    \begin{multicols}{2}
+        \vfill
+        \columnbreak
+        \vspace*{\fill}
+        \begin{center}
+            \begin{forest}
+                for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
+                [$H_2$
+                [$H_0$
+                        [$a_0$]
+                            [$a_1$]
+                    ]
+                    [$H_1$
+                        [$a_2$]
+                            [$a_3$]
+                    ]
                 ]
-                [$H_1$
-                    [$a_2$]
-                        [$a_3$]
+            \end{forest}
+        \end{center}
+        \begin{center}
+            \textit{Before removing $a_2$}
+        \end{center}
+        % Fill a space
+        \vfill
+        \columnbreak
+        \vspace*{\fill}
+        % Fill a space
+        \begin{center}
+            \begin{forest}
+                for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
+                [$H_4$, edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0
+                [$H_0$
+                [$a_0$]
+                    [$a_1$]
                 ]
-            ]
-        \end{forest}
-    \end{center}
-    \begin{center}
-        \textit{Before removing $a_2$}
-    \end{center}
-    % Fill a space
-    \vfill
-    \columnbreak
-    \vspace*{\fill}
-    % Fill a space
-    \begin{center}
-        \begin{forest}
-            for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
-            [$H_4$, edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0
-            [$H_0$
-            [$a_0$]
-                [$a_1$]
-            ]
-            [$H_3$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0
-            [$0$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0]
-            [$a_3$]
-            ]
-            ]
-        \end{forest}
-    \end{center}
-    \begin{center}
-        \textit{After removing $a_2$}
-    \end{center}
-\end{multicols}
+                [$H_3$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0
+                [$0$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0]
+                [$a_3$]
+                ]
+                ]
+            \end{forest}
+        \end{center}
+        \begin{center}
+            \textit{After removing $a_2$}
+        \end{center}
+    \end{multicols}
+}
 
 \bigbreak
 
@@ -913,44 +924,46 @@ If we want to generate a proof for the node $a_4$.
 
 \bigbreak
 
-\begin{multicols}{2}
-    \vfill
-    \columnbreak
-    \vspace*{\fill}
-    \begin{center}
-        \begin{forest}
-            for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
-            [$H_3$
-            [
-                    $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
+\vbox{
+    \begin{multicols}{2}
+        \vfill
+        \columnbreak
+        \vspace*{\fill}
+        \begin{center}
+            \begin{forest}
+                for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
+                [$H_3$
+                [
+                        $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
+                    ]
+                    [$a_4$ [$a_4$ [$a_4$]]]
                 ]
-                [$a_4$ [$a_4$ [$a_4$]]]
-            ]
-        \end{forest}
-    \end{center}
-    \begin{center}
-        \textit{LeanIMT to generate a proof for $a_4$}
-    \end{center}
-    % Fill a space
-    \vfill
-    \columnbreak
-    \vspace*{\fill}
-    % Fill a space
-    \begin{center}
-        \begin{forest}
-            for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
-            [$H_3$, draw=blue600, top color=blue600!0, bottom color=blue600!0
-            [
-            $H_2$ , draw=blue600, top color=blue600!0, bottom color=blue600!0 [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
-            ]
-            [$a_4$ [$a_4$ [$a_4$ , draw=blue600, top color=blue600!0, bottom color=blue600!0]]]
-            ]
-        \end{forest}
-    \end{center}
-    \begin{center}
-        \textit{Nodes used to generate a proof for $a_4$}
-    \end{center}
-\end{multicols}
+            \end{forest}
+        \end{center}
+        \begin{center}
+            \textit{LeanIMT to generate a proof for $a_4$}
+        \end{center}
+        % Fill a space
+        \vfill
+        \columnbreak
+        \vspace*{\fill}
+        % Fill a space
+        \begin{center}
+            \begin{forest}
+                for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
+                [$H_3$, draw=blue600, top color=blue600!0, bottom color=blue600!0
+                [
+                $H_2$ , draw=blue600, top color=blue600!0, bottom color=blue600!0 [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
+                ]
+                [$a_4$ [$a_4$ [$a_4$ , draw=blue600, top color=blue600!0, bottom color=blue600!0]]]
+                ]
+            \end{forest}
+        \end{center}
+        \begin{center}
+            \textit{Nodes used to generate a proof for $a_4$}
+        \end{center}
+    \end{multicols}
+}
 
 \bigbreak
 
@@ -978,44 +991,46 @@ If we want to generate a proof for the node $a_3$.
 
 \bigbreak
 
-\begin{multicols}{2}
-    \vfill
-    \columnbreak
-    \vspace*{\fill}
-    \begin{center}
-        \begin{forest}
-            for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
-            [$H_3$
-            [
-                    $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
+\vbox{
+    \begin{multicols}{2}
+        \vfill
+        \columnbreak
+        \vspace*{\fill}
+        \begin{center}
+            \begin{forest}
+                for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
+                [$H_3$
+                [
+                        $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
+                    ]
+                    [$a_4$ [$a_4$ [$a_4$]]]
                 ]
-                [$a_4$ [$a_4$ [$a_4$]]]
-            ]
-        \end{forest}
-    \end{center}
-    \begin{center}
-        \textit{LeanIMT to generate a proof for $a_3$}
-    \end{center}
-    % Fill a space
-    \vfill
-    \columnbreak
-    \vspace*{\fill}
-    % Fill a space
-    \begin{center}
-        \begin{forest}
-            for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
-            [$H_3$, draw=blue600, top color=blue600!0, bottom color=blue600!0
-            [
-            $H_2$ [$H_0$, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_0$] [$a_1$]] [$H_1$ [$a_2$, draw=blue600, top color=blue600!0, bottom color=blue600!0] [$a_3$ , draw=blue600, top color=blue600!0, bottom color=blue600!0]]
-            ]
-            [$a_4$, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_4$ [$a_4$]]]
-            ]
-        \end{forest}
-    \end{center}
-    \begin{center}
-        \textit{Nodes used to generate a proof for $a_3$}
-    \end{center}
-\end{multicols}
+            \end{forest}
+        \end{center}
+        \begin{center}
+            \textit{LeanIMT to generate a proof for $a_3$}
+        \end{center}
+        % Fill a space
+        \vfill
+        \columnbreak
+        \vspace*{\fill}
+        % Fill a space
+        \begin{center}
+            \begin{forest}
+                for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
+                [$H_3$, draw=blue600, top color=blue600!0, bottom color=blue600!0
+                [
+                $H_2$ [$H_0$, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_0$] [$a_1$]] [$H_1$ [$a_2$, draw=blue600, top color=blue600!0, bottom color=blue600!0] [$a_3$ , draw=blue600, top color=blue600!0, bottom color=blue600!0]]
+                ]
+                [$a_4$, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_4$ [$a_4$]]]
+                ]
+            \end{forest}
+        \end{center}
+        \begin{center}
+            \textit{Nodes used to generate a proof for $a_3$}
+        \end{center}
+    \end{multicols}
+}
 
 \bigbreak
 
@@ -1110,44 +1125,46 @@ If we want to verify a proof for the node $a_4$.
 
 \bigbreak
 
-\begin{multicols}{2}
-    \vfill
-    \columnbreak
-    \vspace*{\fill}
-    \begin{center}
-        \begin{forest}
-            for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
-            [$H_3$
-            [
-                    $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
+\vbox{
+    \begin{multicols}{2}
+        \vfill
+        \columnbreak
+        \vspace*{\fill}
+        \begin{center}
+            \begin{forest}
+                for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
+                [$H_3$
+                [
+                        $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
+                    ]
+                    [$a_4$ [$a_4$ [$a_4$]]]
+                ]
+            \end{forest}
+        \end{center}
+        \begin{center}
+            \textit{LeanIMT to verify a proof for $a_4$}
+        \end{center}
+        % Fill a space
+        \vfill
+        \columnbreak
+        \vspace*{\fill}
+        % Fill a space
+        \begin{center}
+            \begin{forest}
+                for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
+                [$H_3$, draw=blue600, top color=blue600!0, bottom color=blue600!0
+                [
+                $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
                 ]
                 [$a_4$ [$a_4$ [$a_4$]]]
-            ]
-        \end{forest}
-    \end{center}
-    \begin{center}
-        \textit{LeanIMT to verify a proof for $a_4$}
-    \end{center}
-    % Fill a space
-    \vfill
-    \columnbreak
-    \vspace*{\fill}
-    % Fill a space
-    \begin{center}
-        \begin{forest}
-            for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
-            [$H_3$, draw=blue600, top color=blue600!0, bottom color=blue600!0
-            [
-            $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
-            ]
-            [$a_4$ [$a_4$ [$a_4$]]]
-            ]
-        \end{forest}
-    \end{center}
-    \begin{center}
-        \textit{Nodes rebuilt to verify a proof for $a_4$}
-    \end{center}
-\end{multicols}
+                ]
+            \end{forest}
+        \end{center}
+        \begin{center}
+            \textit{Nodes rebuilt to verify a proof for $a_4$}
+        \end{center}
+    \end{multicols}
+}
 
 \bigbreak
 
@@ -1175,44 +1192,46 @@ If we want to verify a proof for the node $a_3$.
 
 \bigbreak
 
-\begin{multicols}{2}
-    \vfill
-    \columnbreak
-    \vspace*{\fill}
-    \begin{center}
-        \begin{forest}
-            for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
-            [$H_3$
-            [
-                    $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
+\vbox{
+    \begin{multicols}{2}
+        \vfill
+        \columnbreak
+        \vspace*{\fill}
+        \begin{center}
+            \begin{forest}
+                for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
+                [$H_3$
+                [
+                        $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
+                    ]
+                    [$a_4$ [$a_4$ [$a_4$]]]
+                ]
+            \end{forest}
+        \end{center}
+        \begin{center}
+            \textit{LeanIMT to verify a proof for $a_3$}
+        \end{center}
+        % Fill a space
+        \vfill
+        \columnbreak
+        \vspace*{\fill}
+        % Fill a space
+        \begin{center}
+            \begin{forest}
+                for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
+                [$H_3$, draw=blue600, top color=blue600!0, bottom color=blue600!0
+                [
+                $H_2$, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$H_0$ [$a_0$] [$a_1$]] [$H_1$, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_2$] [$a_3$]]
                 ]
                 [$a_4$ [$a_4$ [$a_4$]]]
-            ]
-        \end{forest}
-    \end{center}
-    \begin{center}
-        \textit{LeanIMT to verify a proof for $a_3$}
-    \end{center}
-    % Fill a space
-    \vfill
-    \columnbreak
-    \vspace*{\fill}
-    % Fill a space
-    \begin{center}
-        \begin{forest}
-            for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
-            [$H_3$, draw=blue600, top color=blue600!0, bottom color=blue600!0
-            [
-            $H_2$, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$H_0$ [$a_0$] [$a_1$]] [$H_1$, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_2$] [$a_3$]]
-            ]
-            [$a_4$ [$a_4$ [$a_4$]]]
-            ]
-        \end{forest}
-    \end{center}
-    \begin{center}
-        \textit{Nodes rebuilt to verify a proof for $a_3$}
-    \end{center}
-\end{multicols}
+                ]
+            \end{forest}
+        \end{center}
+        \begin{center}
+            \textit{Nodes rebuilt to verify a proof for $a_3$}
+        \end{center}
+    \end{multicols}
+}
 
 \bigbreak
 
