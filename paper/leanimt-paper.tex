@@ -22,12 +22,24 @@
 
 \usepackage{amsmath}
 
+% Create plots
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+
+% Use charts with axis that are strings instead of number
+\usepackage{pgfplotstable}
+
 % Add dots to the table of contents
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
 \renewcommand{\cftsubsecleader}{\cftdotfill{\cftdotsep}}
 \renewcommand{\cftsubsubsecleader}{\cftdotfill{\cftdotsep}}
 
 % Define custom colors using xcolor
+\definecolor{green400}{HTML}{4ade80}
+\definecolor{green500}{HTML}{22c55e}
+\definecolor{green600}{HTML}{16a34a}
+\definecolor{blue400}{HTML}{60a5fa}
+\definecolor{blue500}{HTML}{3b82f6}
 \definecolor{blue600}{HTML}{2563eb}
 \definecolor{blue700}{HTML}{1d4ed8}
 
@@ -1320,7 +1332,66 @@ TODO: Explain TypeScript and Solidity implementations.
 
 \section{Benchmarks}
 
-\section{Conslusions}
+\bigbreak
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+                xlabel={Members},
+                ylabel={Time (ms)},
+                grid=major,
+                legend style={at={(1.05,1)}, anchor=north west}, % Position the legend outside the plot
+                legend cell align={left}, % Align legend text to the left
+            ]
+            \addplot[mark=none, color=blue500, thick] table [col sep=comma, x=category, y=IMT] {data/data.csv};
+
+            \addplot[mark=none, color=green500, thick] table [col sep=comma, x=category, y=LeanIMT] {data/data.csv};
+
+            % Manually add legend entries without markers
+            \addlegendimage{no markers, thick,blue500}
+            \addlegendentry{IMT}
+            \addlegendimage{no markers, thick,green400}
+            \addlegendentry{LeanIMT}
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Insert function IMT vs LeanIMT}
+    \label{fig:multiplefiles}
+\end{figure}
+
+\bigbreak
+
+\begin{figure}
+    \centering
+    \pgfplotstableread[col sep=comma,]{data/function.csv}\datatable
+    \begin{tikzpicture}
+        \begin{axis}[
+                ybar,
+                xlabel={Function},
+                xtick=data,
+                xticklabels from table={\datatable}{Function},
+                ylabel={Dozers},
+                grid=major, % Add grid
+                enlargelimits=0.15,
+                legend style={at={(1.05,1)}, anchor=north west}, % Position the legend outside the plot
+                legend cell align={left}, % Align legend text to the left
+                nodes near coords,
+                xticklabel style={rotate=45, anchor=east} % Rotate x-axis labels
+            ]
+            \addplot[color=blue600, fill=blue400] table [x expr=\coordindex, y={IMT}, col sep=comma]{\datatable};
+            \addlegendentry{IMT}
+
+            \addplot[color=green600, fill=green400] table [x expr=\coordindex, y={LeanIMT}, col sep=comma]{\datatable};
+            \addlegendentry{LeanIMT}
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Insert function IMT vs LeanIMT}
+    \label{fig:multiplefile}
+\end{figure}
+
+\bigbreak
+
+\section{Conclusions}
 
 % Example citation in the Introduction section
 This document is based on the work of \cite{semaphorev1whitepaper}.
