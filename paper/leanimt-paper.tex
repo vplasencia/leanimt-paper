@@ -3,6 +3,9 @@
 % such as an article or a book, and begins the document preamble
 \documentclass{article} 
 
+% Set the space between paragraphs
+\setlength{\parskip}{1em}
+
 % Packages for customizing the ToC
 \usepackage{tocloft}
 \usepackage{xcolor} % Package for color definitions
@@ -102,7 +105,7 @@ An Incrememental Merkle Tree (IMT) is a Merkle Tree (MT) designed to be updated 
 % align to the left
 \raggedright
 
-\bigbreak
+
 
 \subsection{Binary Tree}
 
@@ -111,7 +114,7 @@ A Binary Tree is a tree data structure in which each node has at most two childr
 TODO: Explain what is a Merkle tree and an Incremental Merkle Tree.
 
 % Add a new empty line
-\bigbreak
+
 
 % Generic Merkle Tree 
 
@@ -125,17 +128,17 @@ TODO: Explain what is a Merkle tree and an Incremental Merkle Tree.
     \end{forest}
 \end{center}
 
-\bigbreak
+
 
 \section{LeanIMT}
 
 \subsection{Definition}
 
-\bigbreak
+
 
 The \textbf{LeanIMT} (Lean Incremental Merkle Tree) is a Binary IMT.
 
-\bigbreak
+
 
 % align to the left
 \raggedright
@@ -152,11 +155,11 @@ The tree will always be balanced by construction.
 
 In a LeanIMT a node is either a leaf or a parent.
 
-\bigbreak
+
 
 Example of a LeanIMT
 
-\bigbreak
+
 
 $T$ - Tree
 
@@ -164,22 +167,22 @@ $V$ - Vertices (Nodes)
 
 $E$ - Edges (Lines connecting Nodes)
 
-\bigbreak
+
 
 $T = (V,E)$
 
 % align to the left
 \raggedright
 
-\bigbreak
+
 
 $V = \{a_0, a_1, a_2, H_0, H_1, H_2\}$
 
-\bigbreak
+
 
 $E = \{(a_0, H_0), (a_1, H_0), (a_2, a_2), (H_0, H_1), (a_2, a_2)\}$
 
-\bigbreak
+
 
 \begin{center}
     \begin{forest}
@@ -196,7 +199,7 @@ $E = \{(a_0, H_0), (a_1, H_0), (a_2, a_2), (H_0, H_1), (a_2, a_2)\}$
     \end{forest}
 \end{center}
 
-\bigbreak
+
 
 \subsection{Insertion}
 
@@ -206,36 +209,36 @@ There are two cases:
 
 2. When the new node is a right node.
 
-\bigbreak
+
 
 We will always see one of these cases in each level when we are inserting a node. It is like, when you insert a node, if that node is left node, the parent node which is in the next level, will be the same node. If it is a right node the parent node, will be the hash of this node with the node in its left. This algorithm will be the same in each level, not only in level 0.
 
-\bigbreak
+
 
 \subsection*{Case 1: The new node is a left node}
 
 It will not be hashed, it's value will be sent to the next level.
 
-\bigbreak
+
 
 If we add $a_4$.
 
-\bigbreak
+
 
 $T = (V,E)$
 
 % align to the left
 \raggedright
 
-\bigbreak
+
 
 $V = \{a_0, a_1, a_2, a_3, H_0, H_1, H_2\}$
 
-\bigbreak
+
 
 $E = \{(a_0, H_0), (a_1, H_0), (a_2, H_1), (a_3, H_1), (H_0, H_2), (H_1, H_2)\}$
 
-\bigbreak
+
 
 % \vbox is used to group the diagrams next to each other
 \vbox{
@@ -278,15 +281,15 @@ $E = \{(a_0, H_0), (a_1, H_0), (a_2, H_1), (a_3, H_1), (H_0, H_2), (H_1, H_2)\}$
     \end{multicols}
 }
 
-\bigbreak
+
 
 \subsection*{Case 2: The new node is a right node}
 
-\bigbreak
+
 
 If we add $a_5$.
 
-\bigbreak
+
 
 \vbox{
     \begin{multicols}{2}
@@ -333,7 +336,7 @@ If we add $a_5$.
     \end{multicols}
 }
 
-\bigbreak
+
 
 \subsubsection{Pseudocode}
 
@@ -359,7 +362,7 @@ If we add $a_5$.
     \end{algorithmic}
 \end{algorithm}
 
-\bigbreak
+
 
 \subsubsection{Correctness}
 
@@ -405,45 +408,45 @@ Since T was a correct LeanIMT with $n$ nodes and inserting a new node that is a 
 
 Then for the two cases 1 and 2 the Insert algorithm follows the LeanIMT properties $\Rightarrow$ the Insert algorithm is correct.
 
-\bigbreak
+
 
 \subsubsection{Time complexity}
 
-\bigbreak
+
 
 $n$: Number of leaves in the tree.
 
 $d$: Tree depth.
 
-\bigbreak
+
 
 Every time a new node is added, it is necessary to update or add the ancestors up to the root of the tree.
 
-\bigbreak
+
 \label{InsertProof}
 Number of operations when adding a leaf: $\lceil d \rceil$
 
-\bigbreak
+
 
 $\lceil d \rceil \leq d + 1$
 
-\bigbreak
+
 
 $\phantom{\lceil m \rceil} \leq O(\log n) + 1$
 
-\bigbreak
+
 
 $\phantom{\lceil m \rceil} \Rightarrow \boxed{O(\log n)}$
 
-\bigbreak
+
 
 $d = \lceil \log (n) \rceil \leq \log (n) + 1$
 
-\bigbreak
+
 
 $\phantom{d = \lceil \log (n) \rceil} \Rightarrow O(\log n)$
 
-\bigbreak
+
 
 The time complexity of the \textit{Insert} function is $\boldsymbol{O(\log n)}$.
 
@@ -451,7 +454,7 @@ The time complexity of the \textit{Insert} function is $\boldsymbol{O(\log n)}$.
 
 Performing the insertion in bulk rather than individually using a loop can lead to significant performance improvements because the number of hashing operations is reduced.
 
-\bigbreak
+
 
 When inserting $n$ members, all levels will be updated $n$ times if the batch insertion function is not being used.
 
@@ -459,11 +462,11 @@ The core idea behind the batch insertion algorithm is to update each level only 
 
 The algorithm will go through the nodes that are necessary to update the next level of the tree. The other nodes in the tree will not change.
 
-\bigbreak
+
 
 Insert $a_4$ and $a_5$.
 
-\bigbreak
+
 
 \vbox{
     \begin{multicols}{2}
@@ -505,7 +508,7 @@ Insert $a_4$ and $a_5$.
     \end{multicols}
 }
 
-\bigbreak
+
 
 \subsubsection{Pseudocode}
 
@@ -534,11 +537,11 @@ Insert $a_4$ and $a_5$.
     \end{algorithmic}
 \end{algorithm}
 
-\bigbreak
+
 
 \subsubsection{Correctness}
 
-\bigbreak
+
 
 \subsubsection{Time complexity}
 
@@ -548,122 +551,122 @@ $d$: Tree depth.
 
 $m$: Number of leaves to insert.
 
-\bigbreak
+
 
 Number of operations when inserting elements in batch:
 
-\bigbreak
+
 
 $\lceil m \rceil + \lceil \frac{m}{2} \rceil + \lceil \frac{m}{4} \rceil + ... + \lceil \frac{m}{2^d} \rceil$
 
-\bigbreak
+
 
 That is the same as $\sum_{k=0}^{d} \lceil \frac{m}{2^k} \rceil$
 
-\bigbreak
+
 
 $\lceil m \rceil \leq m + 1$ then $\lceil \frac{m}{2^k} \rceil \leq \frac{m}{2^k} + 1$
 
-\bigbreak
+
 
 $\sum_{k=0}^{d} \lceil \frac{m}{2^k} \rceil \leq \sum_{k=0}^{d} (\frac{m}{2^k} + 1)$
 
-\bigbreak
+
 
 % phantom is used to hide the information of the expression. It
 % is used here to create an empty space with the same size as the expression inside the braces.
 
 $\phantom{\sum_{k=0}^{d} \lceil \frac{m}{2^k} \rceil} \leq \sum_{k=0}^{d} \frac{m}{2^k} + \sum_{k=0}^{d} 1$
 
-\bigbreak
+
 
 $\phantom{\sum_{k=0}^{d} \lceil \frac{m}{2^k} \rceil} \leq 2m + O(\log (n+m))$
 
-\bigbreak
+
 
 $\phantom{\sum_{k=0}^{d} \lceil \frac{m}{2^k} \rceil} \leq O(m) + O(\log (n+m))$
 
-\bigbreak
+
 
 $\phantom{\sum_{k=0}^{d} \lceil \frac{m}{2^k} \rceil} \Rightarrow \boxed{O(m)}$
 
-\bigbreak
+
 
 $\sum_{k=0}^{d} \frac{m}{2^k} = m \sum_{k=0}^{d} \frac{1}{2^k} \approx m * 2 \Rightarrow 2m$
 
-\bigbreak
+
 
 $\sum_{k=0}^{d} \frac{1}{2^k}$ (Geometric series)
 
-\bigbreak
+
 
 $|r| < 1$; $r = \frac{1}{2}$
 
-\bigbreak
+
 
 $\sum_{k=0}^{\infty} a * r ^ n = \frac{a}{1-r} = \frac{1}{1-\frac{1}{2}}$
 
-\bigbreak
+
 
 $\phantom{\sum_{k=0}^{\infty} a * r ^ n = \frac{a}{1-r}} = \frac{1}{2}$
 
-\bigbreak
+
 
 $\phantom{\sum_{k=0}^{\infty} a * r ^ n = \frac{a}{1-r}} = 2$
 
-\bigbreak
+
 
 $\sum_{k=0}^{d} 1 = \frac{a}{1-r} = d + 1$
 
-\bigbreak
+
 
 $\phantom{\sum_{k=0}^{d} 1 = \frac{a}{1-r}} = O(\log (n+m)) + 1$
 
-\bigbreak
+
 
 $\phantom{\sum_{k=0}^{d} 1 = \frac{a}{1-r}} \Rightarrow O(\log (n+m))$
 
-\bigbreak
+
 
 $d = \lceil \log (n+m) \rceil \leq \log (n+m) + 1$
 
-\bigbreak
+
 
 $\phantom{d = \lceil \log (n + m) \rceil} \Rightarrow O(\log (n+m))$
 
 Then the time complexity of the \textit{InsertMany} function is $\boldsymbol{O(m)}$.
 
-\bigbreak
+
 
 \textbf{Loop Insertion vs Batch Insertion}
 
-\bigbreak
+
 
 The time complexity of the Insertion function using a loop is $O(\log (n+m))$.
 
-\bigbreak
+
 
 Going to the root to update or add nodes requires $ \log (n+m)$ number of operations.
 
 If we go to the root to update or add nodes $m$ times (one time per leaf to add) then we will have:
 
-\bigbreak
+
 
 $m * \log (n+m) \Rightarrow \boxed{O(m \log (n+m))}$
 
-\bigbreak
+
 
 $\Rightarrow$ Time complexity Loop Insertion is superlinear: $\boldsymbol{O(m \log (n+m))}$
 
-\bigbreak
+
 
 $\Rightarrow$ Time complexity Batch Insertion (\textit{InsertMany} function) is linear: $\boldsymbol{O(m)}$ (linear)
 
-\bigbreak
+
 
 $\Rightarrow$ In terms of time complexity, it is more efficient to use the \textit{InsertMany} function than the \textit{Insert} function in a loop.
 
-\bigbreak
+
 
 \subsection{Update}
 
@@ -675,11 +678,11 @@ There are two cases:
 
 \subsection*{Case 1: There is no right sibling}
 
-\bigbreak
+
 
 Update $a_4$ to $a_5$
 
-\bigbreak
+
 
 \vbox{
     \begin{multicols}{2}
@@ -722,15 +725,15 @@ Update $a_4$ to $a_5$
     \end{multicols}
 }
 
-\bigbreak
+
 
 \subsection*{Case 2: There is right sibling}
 
-\bigbreak
+
 
 Update $a_2$ to $a_5$
 
-\bigbreak
+
 
 \vbox{
     \begin{multicols}{2}
@@ -773,7 +776,7 @@ Update $a_2$ to $a_5$
     \end{multicols}
 }
 
-\bigbreak
+
 
 \subsubsection{Pseudocode}
 
@@ -800,25 +803,25 @@ Update $a_2$ to $a_5$
     \end{algorithmic}
 \end{algorithm}
 
-\bigbreak
+
 
 \subsubsection{Correctness}
 
-\bigbreak
+
 
 \subsubsection{Time complexity}
 
-\bigbreak
+
 
 $n$: Number of leaves in the tree.
 
 $d$: Tree depth.
 
-\bigbreak
+
 
 Every time a leaf is updated, it is necessary to update all the ancestors up to the root of the tree.
 
-\bigbreak
+
 
 Number of operations when updating a leaf: $\lceil d \rceil$
 
@@ -826,7 +829,7 @@ This proof is the same as the \hyperref[InsertProof]{proof of the time complexit
 
 The time complexity of the \textit{Update} function is $\boldsymbol{O(\log n)}$.
 
-\bigbreak
+
 
 \subsection{Remove}
 
@@ -834,11 +837,11 @@ The \textit{remove} function is the same as the \textit{update} function but the
 
 You can use a value other than 0, the idea is to use a value that is not a possible value for a correct member in the list.
 
-\bigbreak
+
 
 Remove $a_2$
 
-\bigbreak
+
 
 \vbox{
     \begin{multicols}{2}
@@ -889,7 +892,7 @@ Remove $a_2$
     \end{multicols}
 }
 
-\bigbreak
+
 
 \subsubsection{Pseudocode}
 
@@ -902,15 +905,15 @@ Remove $a_2$
     \end{algorithmic}
 \end{algorithm}
 
-\bigbreak
+
 
 \subsubsection{Correctness}
 
-\bigbreak
+
 
 \subsubsection{Time complexity}
 
-\bigbreak
+
 
 \subsection{Generate Merkle Proof}
 
@@ -920,21 +923,21 @@ There are two cases:
 
 2. Other cases
 
-\bigbreak
+
 
 $d$: Depth of the tree
 
 We will always see one of these two cases. When you want to generate the proof for the case 1, there will always be one node in the siblings list, for the case 2 there will always be $\lceil d \rceil$ number of nodes.
 
-\bigbreak
+
 
 \subsection*{Case 1: The leaf is the last leaf and a left node}
 
-\bigbreak
+
 
 If we want to generate a proof for the node $a_4$.
 
-\bigbreak
+
 
 \vbox{
     \begin{multicols}{2}
@@ -977,7 +980,7 @@ If we want to generate a proof for the node $a_4$.
     \end{multicols}
 }
 
-\bigbreak
+
 
 path: [1]
 
@@ -993,15 +996,15 @@ siblings: [$H_2$]
 
 \}
 
-\bigbreak
+
 
 \subsection*{Case 2: Other cases}
 
-\bigbreak
+
 
 If we want to generate a proof for the node $a_3$.
 
-\bigbreak
+
 
 \vbox{
     \begin{multicols}{2}
@@ -1044,7 +1047,7 @@ If we want to generate a proof for the node $a_3$.
     \end{multicols}
 }
 
-\bigbreak
+
 
 path: [1, 1, 0]
 
@@ -1060,7 +1063,7 @@ siblings: [$a_2$, $H_0$, $a_2$]
 
 \}
 
-\bigbreak
+
 
 \begin{algorithm}[H]
     \caption{LeanIMT generateProof algorithm}\label{generateProof}
@@ -1091,25 +1094,25 @@ siblings: [$a_2$, $H_0$, $a_2$]
     \end{algorithmic}
 \end{algorithm}
 
-\bigbreak
+
 
 \subsubsection{Correctness}
 
-\bigbreak
+
 
 \subsubsection{Time complexity}
 
-\bigbreak
+
 
 $n$: Number of leaves in the tree.
 
 $d$: Tree depth.
 
-\bigbreak
+
 
 To generate a Merkle Proof it is necessary to visit all the ancestors of the leaf up to the root of the tree.
 
-\bigbreak
+
 
 Number of operations to generate a Merkle Proof: $\lceil d \rceil$
 
@@ -1117,7 +1120,7 @@ This proof is the same as the \hyperref[InsertProof]{proof of the time complexit
 
 The time complexity of the \textit{generateProof} function is $\boldsymbol{O(\log n)}$.
 
-\bigbreak
+
 
 \subsection{Verify Merkle Proof}
 
@@ -1127,15 +1130,15 @@ There are two cases:
 
 2. Other cases
 
-\bigbreak
+
 
 \subsection*{Case 1: The leaf is the last leaf and a left node}
 
-\bigbreak
+
 
 If we want to verify a proof for the node $a_4$.
 
-\bigbreak
+
 
 \vbox{
     \begin{multicols}{2}
@@ -1178,7 +1181,7 @@ If we want to verify a proof for the node $a_4$.
     \end{multicols}
 }
 
-\bigbreak
+
 
 path: [1]
 
@@ -1194,15 +1197,15 @@ siblings: [$H_2$]
 
 \}
 
-\bigbreak
+
 
 \subsection*{Case 2: Other cases}
 
-\bigbreak
+
 
 If we want to verify a proof for the node $a_3$.
 
-\bigbreak
+
 
 \vbox{
     \begin{multicols}{2}
@@ -1245,7 +1248,7 @@ If we want to verify a proof for the node $a_3$.
     \end{multicols}
 }
 
-\bigbreak
+
 
 path: [1, 1, 0]
 
@@ -1261,9 +1264,9 @@ siblings: [$a_2$, $H_0$, $a_2$]
 
 \}
 
-\bigbreak
 
-\bigbreak
+
+
 
 \begin{algorithm}[H]
     \caption{LeanIMT verifyProof algorithm}\label{verifyProof}
@@ -1288,25 +1291,25 @@ siblings: [$a_2$, $H_0$, $a_2$]
     \end{algorithmic}
 \end{algorithm}
 
-\bigbreak
+
 
 \subsubsection{Correctness}
 
-\bigbreak
+
 
 \subsubsection{Time complexity}
 
-\bigbreak
+
 
 $n$: Number of leaves in the tree.
 
 $d$: Tree depth.
 
-\bigbreak
+
 
 To verify a Merkle Proof it is necessary to visit (rebuild) all the ancestors of the leaf up to the root of the tree.
 
-\bigbreak
+
 
 Number of operations to verify a Merkle Proof: $\lceil d \rceil$
 
@@ -1314,25 +1317,25 @@ This proof is the same as the \hyperref[InsertProof]{proof of the time complexit
 
 The time complexity of the \textit{verifyProof} function is $\boldsymbol{O(\log n)}$.
 
-\bigbreak
+
 
 \section{Implementations}
 
 TODO: Explain TypeScript and Solidity implementations.
 
-\bigbreak
+
 
 \subsection{TypeScript}
 
-\bigbreak
+
 
 \subsection{Solidity}
 
-\bigbreak
+
 
 \section{Benchmarks}
 
-\bigbreak
+
 
 \begin{figure}
     \centering
@@ -1359,7 +1362,7 @@ TODO: Explain TypeScript and Solidity implementations.
     \label{fig:multiplefiles}
 \end{figure}
 
-\bigbreak
+
 
 \begin{figure}
     \centering
@@ -1389,7 +1392,7 @@ TODO: Explain TypeScript and Solidity implementations.
     \label{fig:multiplefile}
 \end{figure}
 
-\bigbreak
+
 
 \section{Conclusions}
 
