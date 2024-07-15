@@ -32,6 +32,9 @@
 % Use charts with axis that are strings instead of number
 \usepackage{pgfplotstable}
 
+% For better looking tables
+\usepackage{booktabs} 
+
 % Add dots to the table of contents
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
 \renewcommand{\cftsubsecleader}{\cftdotfill{\cftdotsep}}
@@ -1335,6 +1338,11 @@ TODO: Explain TypeScript and Solidity implementations.
 
 \section{Benchmarks}
 
+\subsection{Smart contracts}
+
+\subsection{Nodejs}
+
+\subsection{Browser}
 
 
 \begin{figure}[H]
@@ -1347,9 +1355,9 @@ TODO: Explain TypeScript and Solidity implementations.
                 legend style={at={(1.05,1)}, anchor=north west}, % Position the legend outside the plot
                 legend cell align={left}, % Align legend text to the left
             ]
-            \addplot[mark=none, color=blue500, thick] table [col sep=comma, x=category, y=IMT] {data/data.csv};
+            \addplot[mark=none, color=blue500, thick] table [col sep=comma, x=Members, y=IMT] {data/insert-line.csv};
 
-            \addplot[mark=none, color=green500, thick] table [col sep=comma, x=category, y=LeanIMT] {data/data.csv};
+            \addplot[mark=none, color=green500, thick] table [col sep=comma, x=Members, y=LeanIMT] {data/insert-line.csv};
 
             % Manually add legend entries without markers
             \addlegendimage{no markers, thick,blue500}
@@ -1361,8 +1369,6 @@ TODO: Explain TypeScript and Solidity implementations.
     \caption{Insert function IMT vs LeanIMT}
     \label{fig:multiplefiles}
 \end{figure}
-
-
 
 \begin{figure}[H]
     \centering
@@ -1392,6 +1398,19 @@ TODO: Explain TypeScript and Solidity implementations.
     \label{fig:multiplefile}
 \end{figure}
 
+\pgfplotstableread[col sep=comma]{data/insert-table.csv}\datatable
+
+\begin{table}[ht]
+    \centering
+    \caption{Insert Function (1000 iterations)}
+    \pgfplotstabletypeset[
+        col sep=comma,
+        header=true,
+        string type, % This ensures text is treated as strings
+        every head row/.style={before row=\toprule, after row=\midrule},
+        every last row/.style={after row=\bottomrule},
+    ]{\datatable}
+\end{table}
 
 
 \section{Conclusions}
