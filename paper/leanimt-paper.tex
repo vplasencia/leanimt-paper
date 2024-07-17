@@ -218,7 +218,7 @@ We will always see one of these cases in each level when we are inserting a node
 
 
 
-\subsection*{Case 1: The new node is a left node}
+\subsubsection*{Case 1: The new node is a left node}
 
 It will not be hashed, it's value will be sent to the next level.
 
@@ -286,7 +286,7 @@ $E = \{(a_0, H_0), (a_1, H_0), (a_2, H_1), (a_3, H_1), (H_0, H_2), (H_1, H_2)\}$
 
 
 
-\subsection*{Case 2: The new node is a right node}
+\subsubsection*{Case 2: The new node is a right node}
 
 
 
@@ -679,7 +679,7 @@ There are two cases:
 
 2. When there is right sibling.
 
-\subsection*{Case 1: There is no right sibling}
+\subsubsection*{Case 1: There is no right sibling}
 
 
 
@@ -730,7 +730,7 @@ Update $a_4$ to $a_5$
 
 
 
-\subsection*{Case 2: There is right sibling}
+\subsubsection*{Case 2: There is right sibling}
 
 
 
@@ -934,7 +934,7 @@ We will always see one of these two cases. When you want to generate the proof f
 
 
 
-\subsection*{Case 1: The leaf is the last leaf and a left node}
+\subsubsection*{Case 1: The leaf is the last leaf and a left node}
 
 
 
@@ -1001,7 +1001,7 @@ siblings: [$H_2$]
 
 
 
-\subsection*{Case 2: Other cases}
+\subsubsection*{Case 2: Other cases}
 
 
 
@@ -1066,7 +1066,7 @@ siblings: [$a_2$, $H_0$, $a_2$]
 
 \}
 
-
+\subsubsection{Pseudocode}
 
 \begin{algorithm}[H]
     \caption{LeanIMT generateProof algorithm}\label{generateProof}
@@ -1135,7 +1135,7 @@ There are two cases:
 
 
 
-\subsection*{Case 1: The leaf is the last leaf and a left node}
+\subsubsection*{Case 1: The leaf is the last leaf and a left node}
 
 
 
@@ -1202,7 +1202,7 @@ siblings: [$H_2$]
 
 
 
-\subsection*{Case 2: Other cases}
+\subsubsection*{Case 2: Other cases}
 
 
 
@@ -1268,7 +1268,7 @@ siblings: [$a_2$, $H_0$, $a_2$]
 \}
 
 
-
+\subsubsection{Pseudocode}
 
 
 \begin{algorithm}[H]
@@ -1384,7 +1384,7 @@ TODO: Explain TypeScript and Solidity implementations.
             \addlegendentry{LeanIMT}
         \end{axis}
     \end{tikzpicture}
-    \caption{All Functions IMT vs LeanIMT}
+    \caption{Functions IMT vs LeanIMT (100 iterations)}
     \label{fig:functions-bar}
 \end{figure}
 
@@ -1402,7 +1402,7 @@ TODO: Explain TypeScript and Solidity implementations.
 
 \begin{table}[H]
     \centering
-    \caption{Insert Functions (1000 iterations)}
+    \caption{Insert Function (1000 iterations)}
     \pgfplotstabletypeset[
         col sep=comma,
         header=true,
@@ -1435,7 +1435,7 @@ TODO: Explain TypeScript and Solidity implementations.
             \addlegendentry{LeanIMT}
         \end{axis}
     \end{tikzpicture}
-    \caption{Insert function IMT vs LeanIMT}
+    \caption{Insert function IMT vs LeanIMT (1000 iterations)}
     \label{fig:insert-line}
 \end{figure}
 
@@ -1465,11 +1465,17 @@ TODO: Explain TypeScript and Solidity implementations.
             \addlegendentry{Average Time}
         \end{axis}
     \end{tikzpicture}
-    \caption{Comparison of IMT and LeanIMT}
+    \caption{Insert function IMT vs LeanIMT (1000 iterations)}
     \label{fig:insert-bar}
 \end{figure}
 
+\subsubsection{Batch Insertion: IMT vs LeanIMT}
+
 \subsubsection{LeanIMT: Insert Loop vs Batch Insertion}
+
+\subsection{Solidity}
+
+\section{Conclusions}
 
 % Line chart
 
@@ -1543,11 +1549,6 @@ TODO: Explain TypeScript and Solidity implementations.
         every last row/.style={after row=\bottomrule},
     ]{\datatable}
 \end{table}
-
-
-\subsection{Solidity}
-
-\section{Conclusions}
 
 % Example citation in the Introduction section
 This document is based on the work of \cite{semaphorev1whitepaper}.
