@@ -43,3 +43,5 @@ node_modules/
 *.bcf
 *.xml
 *.blg
+*.synctex(busy)
+*.bcf-SAVE-ERROR
