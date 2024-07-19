@@ -48,6 +48,8 @@
 \definecolor{blue500}{HTML}{3b82f6}
 \definecolor{blue600}{HTML}{2563eb}
 \definecolor{blue700}{HTML}{1d4ed8}
+\definecolor{violet600}{HTML}{8b5cf6}
+\definecolor{violet400}{HTML}{a78bfa}
 
 % Hyperlink settings
 \hypersetup{
@@ -1411,7 +1413,7 @@ TODO: Explain TypeScript and Solidity implementations.
                 ymin=0,
             ]
 
-            \addplot [color=blue600, fill=blue400] table [x expr=\coordindex, y={AvgTime}, col sep=comma] {\datatable};
+            \addplot [color=violet600, fill=violet400] table [x expr=\coordindex, y={AvgTime}, col sep=comma] {\datatable};
             \addlegendentry{Average Time}
         \end{axis}
     \end{tikzpicture}
@@ -1492,7 +1494,7 @@ TODO: Explain TypeScript and Solidity implementations.
                 ymin=0,
             ]
 
-            \addplot [color=blue600, fill=blue400] table [x expr=\coordindex, y={AvgTime}, col sep=comma] {\datatable};
+            \addplot [color=violet600, fill=violet400] table [x expr=\coordindex, y={AvgTime}, col sep=comma] {\datatable};
             \addlegendentry{Average Time}
         \end{axis}
     \end{tikzpicture}
@@ -1567,7 +1569,7 @@ TODO: Explain TypeScript and Solidity implementations.
                 grid=major,
                 ymin=0,
             ]
-            \addplot [color=blue600, fill=blue400] table [x expr=\coordindex, y={AvgTime}, col sep=comma] {\datatable};
+            \addplot [color=violet600, fill=violet400] table [x expr=\coordindex, y={AvgTime}, col sep=comma] {\datatable};
             \addlegendentry{Average Time}
         \end{axis}
     \end{tikzpicture}
