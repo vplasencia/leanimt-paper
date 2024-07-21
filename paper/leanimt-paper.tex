@@ -272,11 +272,11 @@ $E = \{(a_0, H_0), (a_1, H_0), (a_2, H_1), (a_3, H_1), (H_0, H_2), (H_1, H_2)\}$
         \begin{center}
             \begin{forest}
                 for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
-                [$H_3$, draw=blue600, top color=blue600!0, bottom color=blue600!0
+                [$H_3$, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt
                 [
                 $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
                 ]
-                [$a_4$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_4$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_4$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0]]]
+                [$a_4$ , edge={blue600, line width=1pt}, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt [$a_4$ , edge={blue600, line width=1pt}, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt [$a_4$ , edge={blue600, line width=1pt}, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt]]]
                 ]
             \end{forest}
         \end{center}
@@ -327,11 +327,11 @@ If we add $a_5$.
         \begin{center}
             \begin{forest}
                 for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
-                [$H_5$, draw=blue600, top color=blue600!0, bottom color=blue600!0
+                [$H_5$, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt
                 [
                 $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
                 ]
-                [$H_4$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$H_4$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_4$] [$a_5$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0]]]
+                [$H_4$ , edge={blue600, line width=1pt}, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt [$H_4$ , edge={blue600, line width=1pt}, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt [$a_4$] [$a_5$ , edge={blue600, line width=1pt}, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt]]]
                 ]
             \end{forest}
         \end{center}
@@ -381,11 +381,11 @@ $T$: LeanIMT Tree
 
 $n=0$
 
-If the tree is empty, the Insert function returns a new node with the value of the leaf. This satisfies the LeanIMT rpoperties because the node does not have children. (Trivial case)
+If the tree is empty, the Insert function returns a new node with the value of the leaf. This satisfies the LeanIMT poperties because the node does not have children. (Trivial case)
 
 $n \Rightarrow n+1$
 
-Let's assume that with $n$ nodes, the tree T is a correct LeanIMT and prove that with $n+10$ nodes, T is still a correct LeanIMT. (Inductive step)
+Let's assume that with $n$ nodes, the tree T is a correct LeanIMT and prove that with $n+1$ nodes, T is still a correct LeanIMT. (Inductive step)
 
 The new node is always added at the end of the list of nodes.
 
@@ -499,11 +499,11 @@ Insert $a_4$ and $a_5$.
         \begin{center}
             \begin{forest}
                 for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
-                [$H_4$, draw=blue600, top color=blue600!0, bottom color=blue600!0
+                [$H_4$, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt
                 [
                 $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
                 ]
-                [$H_3$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$H_3$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_4$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0] [$a_5$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0]]]
+                [$H_3$ , edge={blue600, line width=1pt}, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt [$H_3$ , edge={blue600, line width=1pt}, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt [$a_4$ , edge={blue600, line width=1pt}, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt] [$a_5$ , edge={blue600, line width=1pt}, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt]]]
                 ]
             \end{forest}
         \end{center}
@@ -716,11 +716,11 @@ Update $a_4$ to $a_5$
         \begin{center}
             \begin{forest}
                 for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
-                [$H_4$, draw=blue600, top color=blue600!0, bottom color=blue600!0
+                [$H_4$, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt
                 [
                 $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
                 ]
-                [$a_5$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_5$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_5$ , edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0]]]
+                [$a_5$ , edge={blue600, line width=1pt}, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt [$a_5$ , edge={blue600, line width=1pt}, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt [$a_5$ , edge={blue600, line width=1pt}, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt]]]
                 ]
             \end{forest}
         \end{center}
@@ -767,9 +767,9 @@ Update $a_2$ to $a_5$
         \begin{center}
             \begin{forest}
                 for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
-                [$H_3$, draw=blue600, top color=blue600!0, bottom color=blue600!0
+                [$H_3$, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt
                 [
-                $H_5$, edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$H_0$ [$a_0$] [$a_1$]] [$H_4$, edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_5$, edge=blue600, draw=blue600, top color=blue600!0, bottom color=blue600!0] [$a_3$]]
+                $H_5$, edge={blue600, line width=1pt}, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt [$H_0$ [$a_0$] [$a_1$]] [$H_4$, edge={blue600, line width=1pt}, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt [$a_5$, edge={blue600, line width=1pt}, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt] [$a_3$]]
                 ]
                 [$a_4$ [$a_4$ [$a_4$]]]
                 ]
@@ -971,11 +971,11 @@ If we want to generate a proof for the node $a_4$.
         \begin{center}
             \begin{forest}
                 for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
-                [$H_3$, draw=blue600, top color=blue600!0, bottom color=blue600!0
+                [$H_3$, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt
                 [
-                $H_2$ , draw=blue600, top color=blue600!0, bottom color=blue600!0 [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
+                $H_2$ , draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
                 ]
-                [$a_4$ [$a_4$ [$a_4$ , draw=blue600, top color=blue600!0, bottom color=blue600!0]]]
+                [$a_4$ [$a_4$ [$a_4$ , draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt]]]
                 ]
             \end{forest}
         \end{center}
@@ -1038,11 +1038,11 @@ If we want to generate a proof for the node $a_3$.
         \begin{center}
             \begin{forest}
                 for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
-                [$H_3$, draw=blue600, top color=blue600!0, bottom color=blue600!0
+                [$H_3$, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt
                 [
-                $H_2$ [$H_0$, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_0$] [$a_1$]] [$H_1$ [$a_2$, draw=blue600, top color=blue600!0, bottom color=blue600!0] [$a_3$ , draw=blue600, top color=blue600!0, bottom color=blue600!0]]
+                $H_2$ [$H_0$, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt [$a_0$] [$a_1$]] [$H_1$ [$a_2$, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt] [$a_3$ , draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt]]
                 ]
-                [$a_4$, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_4$ [$a_4$]]]
+                [$a_4$, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt [$a_4$ [$a_4$]]]
                 ]
             \end{forest}
         \end{center}
@@ -1172,7 +1172,7 @@ If we want to verify a proof for the node $a_4$.
         \begin{center}
             \begin{forest}
                 for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
-                [$H_3$, draw=blue600, top color=blue600!0, bottom color=blue600!0
+                [$H_3$, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt
                 [
                 $H_2$ [$H_0$ [$a_0$] [$a_1$]] [$H_1$ [$a_2$] [$a_3$]]
                 ]
@@ -1239,9 +1239,9 @@ If we want to verify a proof for the node $a_3$.
         \begin{center}
             \begin{forest}
                 for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
-                [$H_3$, draw=blue600, top color=blue600!0, bottom color=blue600!0
+                [$H_3$, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt
                 [
-                $H_2$, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$H_0$ [$a_0$] [$a_1$]] [$H_1$, draw=blue600, top color=blue600!0, bottom color=blue600!0 [$a_2$] [$a_3$]]
+                $H_2$, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt [$H_0$ [$a_0$] [$a_1$]] [$H_1$, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt [$a_2$] [$a_3$]]
                 ]
                 [$a_4$ [$a_4$ [$a_4$]]]
                 ]
