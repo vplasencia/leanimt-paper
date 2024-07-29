@@ -150,9 +150,10 @@ The \textbf{LeanIMT} (Lean Incremental Merkle Tree) is a Binary IMT.
 
 The LeanIMT has two properties:
 
-1. Every node with two children is the hash of its two child nodes.
-
-2. Every node with one child has the same value as its child node.
+\begin{enumerate}
+    \item Every node with two children is the hash of its two child nodes.
+    \item Every node with one child has the same value as its child node.
+\end{enumerate}
 
 The tree is always built from the leaves to the root.
 
@@ -210,11 +211,10 @@ $E = \{(a_0, H_0), (a_1, H_0), (a_2, a_2), (H_0, H_1), (a_2, a_2)\}$
 
 There are two cases:
 
-1. When the new node is a left node.
-
-2. When the new node is a right node.
-
-
+\begin{enumerate}
+    \item When the new node is a left node.
+    \item When the new node is a right node.
+\end{enumerate}
 
 We will always see one of these cases in each level when we are inserting a node. It is like, when you insert a node, if that node is left node, the parent node which is in the next level, will be the same node. If it is a right node the parent node, will be the hash of this node with the node in its left. This algorithm will be the same in each level, not only in level 0.
 
@@ -391,9 +391,10 @@ The new node is always added at the end of the list of nodes.
 
 To insert a new node, there are two possible cases:
 
-1. When the new node is a left node
-
-2. When the new node is a right node
+\begin{enumerate}
+    \item When the new node is a left node.
+    \item When the new node is a right node.
+\end{enumerate}
 
 Case 1
 
@@ -677,9 +678,10 @@ $\Rightarrow$ In terms of time complexity, it is more efficient to use the \text
 
 There are two cases:
 
-1. When there is no right sibling.
-
-2. When there is right sibling.
+\begin{enumerate}
+    \item When there is no right sibling.
+    \item When there is right sibling.
+\end{enumerate}
 
 \subsubsection*{Case 1: There is no right sibling}
 
