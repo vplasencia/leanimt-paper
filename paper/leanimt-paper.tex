@@ -924,19 +924,19 @@ Remove $a_2$
 
 There are two cases:
 
-1. When the leaf is the last leaf and a left node.
-
-2. Other cases
-
-
+\begin{enumerate}
+    \item When the node does not have a sibling.
+    \item When the node has a sibling.
+\end{enumerate}
 
 $d$: Depth of the tree
+
+Case 1 only happens when the node is the last node in the level and also a left node.
 
 We will always see one of these two cases. When you want to generate the proof for the case 1, there will always be one node in the siblings list, for the case 2 there will always be $\lceil d \rceil$ number of nodes.
 
 
-
-\subsubsection*{Case 1: The leaf is the last leaf and a left node}
+\subsubsection*{Case 1: When the node does not have a sibling}
 
 
 
@@ -1003,7 +1003,7 @@ siblings: [$H_2$]
 
 
 
-\subsubsection*{Case 2: Other cases}
+\subsubsection*{Case 2: When the node has a sibling}
 
 
 
@@ -1131,19 +1131,14 @@ The time complexity of the \textit{generateProof} function is $\boldsymbol{O(\lo
 
 There are two cases:
 
-1. When the leaf is the last leaf and a left node.
+\begin{enumerate}
+    \item When the node does not have a sibling.
+    \item When the node has a sibling.
+\end{enumerate}
 
-2. Other cases
-
-
-
-\subsubsection*{Case 1: The leaf is the last leaf and a left node}
-
-
+\subsubsection*{Case 1: When the node does not have a sibling}
 
 If we want to verify a proof for the node $a_4$.
-
-
 
 \vbox{
     \begin{multicols}{2}
@@ -1204,7 +1199,7 @@ siblings: [$H_2$]
 
 
 
-\subsubsection*{Case 2: Other cases}
+\subsubsection*{Case 2: When the node has a sibling}
 
 
 
