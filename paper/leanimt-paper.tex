@@ -1340,7 +1340,44 @@ TODO: Explain TypeScript and Solidity implementations.
 
 \section{Benchmarks}
 
+All the benchmarks were run in an environment with these properties:
+
+\textbf{System Specifications}
+
+Computer: MacBook Pro
+
+Chip: Apple M2 Pro
+
+Memory (RAM): 16 GB
+
+Operating System: macOS Sonoma version 14.5
+
+\textbf{Software environment}
+
+Node.js version: 20.5.1
+
+Browser: Google Chrome Version 127.0.6533.73 (Official Build) (arm64)
+
+\subsection{Running the benchmarks}
+
+\textbf{TypeScript/JavaScript}
+
+GitHub repository to run Node.js and browser benchmarks: \url{https://github.com/vplasencia/imt-benchmarks}.
+
+\textbf{Solidity}
+
+GitHub repository to run Solidity benchmarks: \url{https://github.com/privacy-scaling-explorations/zk-kit.solidity}
+
 \subsection{TypeScript/JavaScript}
+
+\textbf{Note:} The IMT has a static depth. To run the benchmarks, the minimum depth necessary to perform the operation was used unless a specific tree depth was specified.
+
+For example:
+
+\begin{itemize}
+    \item If I the IMT has 4 members and I want to add 1 new member the tree depth used will be 3.
+    \item If I the IMT has 5 members and I want to add 1 new member the tree depth used will be 3.
+\end{itemize}
 
 \subsubsection{Node.js}
 
