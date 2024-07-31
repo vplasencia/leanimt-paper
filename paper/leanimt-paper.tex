@@ -815,6 +815,44 @@ Update $a_2$ to $a_5$
 \subsubsection{Correctness}
 \label{sec:update-correctness}
 
+The idea is to prove that after updating a node in the LeanIMT, the tree keeps all the properties.
+
+The Mathematical Induction method will be used to prove the correctness of the algorithm.
+
+The induction will be done using the depth of the tree. The correctness of the update function will be proven for all tree depths.
+
+$d$: Depth of the tree
+
+$T$: LeanIMT Tree
+
+Base case
+
+$d = 0$
+
+If the depth is 0, it can have 0 or 1 node. If it has 1 node, it is the root of the tree and if it is updated, the root is also updated because they are the same node.
+
+$d \Rightarrow d+1$
+
+If for a LeanIMT with depth $d$, the update function works correctly because after updating a leaf everything is updated correctly up to the root, then I will prove that for depth $d+1$ the update function works well.
+
+There are two cases when updating a leaf:
+
+\begin{enumerate}
+    \item When there is no right sibling.
+    \item When there is right sibling.
+\end{enumerate}
+
+\textbf{Case 1: There is no right sibling}
+
+If the leaf that will be updated does not have a right sibling, then the parent node will have the same value as the leaf node.
+
+\textbf{Case 2: There is right sibling.}
+
+If the leaf node has a right sibling, the parent value will be the hash of the leaf node with its right sibling.
+
+After those cases, the tree that should be updated has depth d. Using the indictive hypothesis, the subtree of depth d will correctly update all the ancestors up to the root.
+
+Then the update function works correctly for any depth of the tree.
 
 \subsubsection{Time complexity}
 \label{sec:update-time-complexity}
