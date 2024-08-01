@@ -374,7 +374,7 @@ If we add $a_5$.
 
 Prove that after inserting a new node to the LeanIMT, the tree keeps all the properties.
 
-The Mathematical Induction method will be used to prove the correctness of the algorithm.
+The Mathematical Induction method will be used to prove the correctness of this algorithm.
 
 $n$: Number of leaves in the tree.
 
@@ -560,7 +560,7 @@ To prove the correctness of the $insertMany$ algorithm, \hyperref[sec:insert-cor
 
 The $insertMany$ function inserts multiple new leaf nodes into the LeanIMT and updates the tree structure accordingly. The correctness of the algorithm requires verifying that the tree maintains its structure and all nodes correctly reflect the new leaves.
 
-The Mathematical Induction method will be used to prove the correctness of the algorithm.
+The Mathematical Induction method will be used to prove the correctness of this algorithm.
 
 $n$: Number of leaves in the tree.
 
@@ -860,7 +860,7 @@ Update $a_2$ to $a_5$
 
 Prove that after updating a node in the LeanIMT, the tree keeps all the properties.
 
-The Mathematical Induction method will be used to prove the correctness of the algorithm.
+The Mathematical Induction method will be used to prove the correctness of this algorithm.
 
 The induction will be done using the depth of the tree. The correctness of the update function will be proven for all tree depths.
 
@@ -1194,15 +1194,15 @@ siblings: [$a_2$, $H_0$, $a_2$]
 
 \subsubsection{Correctness}
 
-The idea is to prove that the $generateProof$ function works correctly for all tree depths.
+Prove that the $generateProof$ function works correctly for all tree depths.
 
-The Mathematical Induction method will be used to prove the correctness of the algorithm.
+The Mathematical Induction method will be used to prove the correctness of this algorithm.
 
 The induction will be done using the depth of the tree. The correctness of the $generateProof$ function will be proven for all tree depths.
 
-$d$: Depth of the tree
+$d$: Depth of the tree.
 
-Base case
+\textbf{Base Case}
 
 $d = 0$
 
@@ -1210,9 +1210,15 @@ If the depth is 0, it can have 0 or 1 node.
 If it has 0 leaves it is not necessary to use this function because there are no leaves.
 If it has 1 leaf, the merkle proof will have the root and the leaf with the same values because they are the same nodes. The siblings will be empty and the path (index) too.
 
+\textbf{Inductive Hypothesis}
+
+Assume that for a LeanIMT with depth $d$, the $generateProof$ function works correctly because it returns the correct values necessary to rebuild the root.
+
+\textbf{Inductive Step}
+
 $d \Rightarrow d+1$
 
-If for a LeanIMT with depth $d$, the $generateProof$ function works correctly because it returns the correct values necessary to rebuild the root, then I will prove that for a tree with depth $d + 1$, the $generatProof$ function works well.
+If for a LeanIMT with depth $d$, the $generateProof$ function works correctly, prove that for a tree with depth $d + 1$, the $generatProof$ function also works correctly.
 
 There are two cases when generating a proof:
 
@@ -1233,7 +1239,9 @@ If the node is a left node, 0 will be added to the path and the right sibling wi
 
 After those cases, the tree that should generate the proof has depth d. Using the inductive hypothesis, the subtree of depth d will correctly return the values in the proof.
 
-Then the $generateProof$ function works correctly for any depth of the tree.
+\textbf{Conclusions}
+
+By mathematical induction, the $generateProof$ function works correctly for any depth of the tree.
 
 
 \subsubsection{Time complexity}
@@ -1435,7 +1443,7 @@ siblings: [$a_2$, $H_0$, $a_2$]
 
 The idea is to prove that the $verifyProof$ function works correctly for all tree depths.
 
-The Mathematical Induction method will be used to prove the correctness of the algorithm.
+The Mathematical Induction method will be used to prove the correctness of this algorithm.
 
 The induction will be done using the depth of the tree. The correctness of the $verifyProof$ function will be proven for all tree depths.
 
