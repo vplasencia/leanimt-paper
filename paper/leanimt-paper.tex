@@ -370,6 +370,7 @@ If we add $a_5$.
 
 
 \subsubsection{Correctness}
+\label{sec:insert-correctness}
 
 The idea is to prove that after inserting a new node to the LeanIMT, the tree keeps all the properties.
 
@@ -547,7 +548,41 @@ Insert $a_4$ and $a_5$.
 
 \subsubsection{Correctness}
 
+To prove the correctness of the $insertMany$ algorithm, \hyperref[sec:insert-correctness]{the correctness of the $insert$ function will be used}.
 
+The $insertMany$ function inserts multiple new leaf nodes into the LeanIMT and updates the tree structure accordingly. The correctness of the algorithm requires verifying that the tree maintains its structure and all nodes correctly reflect the new leaves.
+
+The Mathematical Induction method will be used to prove the correctness of the algorithm.
+
+$n$: Number of leaves in the tree.
+
+$k$: Number of leaves to insert into the tree.
+
+\textbf{Base Case}
+
+$k=1$
+
+The base case is if 1 leaf is inserted. This is equivalent to the $insert$ function.
+If the tree is correct after inserting 1 leaf, then the $insertMany$ function is correct for inserting a single leaf.
+The tree will have $n+1$ leaves and will be a correct LeanIMT.
+
+\textbf{Inductive Hypothesis}
+
+Assume that the $insertMany$ function works correctly for inserting $k$ leaves, because the tree structure is maintained and all nodes are correctly updated up to the root. Then the LeanIMT is correct with $n+k$ leaves.
+
+\textbf{Inductive Step}
+
+$k \Rightarrow k+1$
+
+Prove that if the $insertMany$ function works for inserting $k$ leaves, it also works for inserting $k+1$ leaves. Then the LeanIMT will be correct with $n+k+1$ leaves.
+
+Since the tree is initially correct with $n$ leaves and inserting $k$ new leaves using the $insertMany$ functions results in a correct LeanIMT with $n+k$ leaves by inductive hypothesis, then inserting 1 additional leaf using the $insert$ function results in a correct LeanIMT with $n+k+1$ leaves because it was proven that the $insert$ function is correct.
+
+Then by inductive hypothesis and the correctness of the $insert$ function, the entire tree remains correct after inserting $k+1$ leaves.
+
+\textbf{Conclusion}
+
+By mathematical induction, the $insertMany$ function works correctly for inserting any number of leaves into the tree.
 
 \subsubsection{Time complexity}
 
