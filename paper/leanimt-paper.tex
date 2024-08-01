@@ -1441,15 +1441,15 @@ siblings: [$a_2$, $H_0$, $a_2$]
 
 \subsubsection{Correctness}
 
-The idea is to prove that the $verifyProof$ function works correctly for all tree depths.
+Prove that the $verifyProof$ function works correctly for all tree depths.
 
 The Mathematical Induction method will be used to prove the correctness of this algorithm.
 
 The induction will be done using the depth of the tree. The correctness of the $verifyProof$ function will be proven for all tree depths.
 
-$d$: Depth of the tree
+$d$: Depth of the tree.
 
-Base case
+\textbf{Base Case}
 
 $d = 0$
 
@@ -1457,15 +1457,23 @@ If the depth is 0, it can have 0 or 1 node.
 If it has 0 leaves it is not necessary to use this function because there are no leaves.
 If it has 1 leaf, the merkle root will be equal to the node so it will verify the proof sucessfully.
 
+\textbf{Inductive Hypothesis}
+
+Assume that for a LeanIMT with depth $d$, the $verifyProof$ function works correctly because it knows how to calculate all the hashes up to the root and then check if the calculated hash is equal to the root in the proof.
+
+\textbf{Inductive Step}
+
 $d \Rightarrow d+1$
 
-If for a LeanIMT with depth $d$, the $verifyProof$ function works correctly because it knows how to calculate all the hashes up to the root and then check if the calculated hash is equal to the root in the proof, then I will prove that for a tree with depth $d + 1$, the $verifyProof$ function works well.
+If for a LeanIMT with depth $d$, the $verifyProof$ function works correctly, prove that for a tree with depth $d + 1$, the $verifyProof$ function also works correctly.
 
 If the current node (which is the leaf at the begining of the algorithm) is a right node, the parent value will be the hash of the left sibling with the current node.
 If the current node is a left node, the parent value will be the hash of the current node with the right sibling.
 Then, the current node will be the parent node.
 
 After running that once, the tree that should verify the proof has depth d. Using the inductive hypothesis, the subtree of depth d will correctly return the values in the proof.
+
+\textbf{Conclusion}
 
 Then the $verifyProof$ function works correctly for any depth of the tree.
 
