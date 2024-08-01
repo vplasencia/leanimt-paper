@@ -81,7 +81,9 @@
 \maketitle
 
 % Creates a section for the Abstract
-\section{Abstract}
+\section*{Abstract}
+
+This technical document presents the Lean Incremental Merkle Tree (LeanIMT), a data structure used to represent a group of elements. LeanIMT is designed to optimize performance and reduce gas costs, making it suitable for zero-knowledge \cite{zero_knowledge_definition} protocols and applications.
 
 \newpage
 Created: \date{\today}
@@ -98,8 +100,12 @@ Updated: \date{\today}
 % Creates a section for the Introduction
 \section{Introduction}
 
+This technical document aims to present and explain a new data structure called LeanIMT (Lean Incremental Merkle Tree). It covers the definition of Merkle Tree (MT), Incremental Merkle Tree (IMT) and Lean Incremental Merkle Tree (LeanIMT). It also explains the motivation behind creating this data structure and provides detailed algorithm explanations with pseudocode, correctness proofs and time complexity analyses. It also includes a section on benchmarks to illustrate performance improvements.
+
 % Creates a subsection for the Motivation within Introduction
 \subsection{Motivation}
+
+The main motivation for the creation of this data structure was the development of the new version of the Semaphore protocol \cite{semaphore_v1_whitepaper} \cite{semaphore_website} (version 4). Semaphore version 3 was using an IMT \cite{imt_typescript} \cite{imt_solidity}, but it was necessary to have a more performant and lower gas-cost alternative.
 
 \section{Merkle Tree}
 
@@ -1881,9 +1887,11 @@ For example:
 
 \section{Conclusions}
 
+This technical document explains the LeanIMT algorithms and proves their correctness and analyzes their time complexity. The benchmarks show the improvements of LeanIMT, which is the data structure used in Semaphore v4, over the IMT used in Semaphore v3.
 
-% Example citation in the Introduction section
-This document is based on the work of \cite{semaphore_v1_whitepaper}.
+\subsection{Future Work}
+
+As future work, a function to update many members at once (similar to the \textit{inserMany} function to insert many members at once) will be developed. Additionally, a Rust implementation of the data structure will be created to benchmark the performance in Node.js and browser environments.
 
 % Allow LaTeX to break lines more flexibly in the bibliography
 \sloppy
