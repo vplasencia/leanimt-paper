@@ -101,13 +101,14 @@ Updated: \date{\today}
 % Creates a subsection for the Motivation within Introduction
 \subsection{Motivation}
 
-\subsection{Binary Tree}
-
-A Binary Tree is a tree data structure in which each node has at most two children, referred to as the left child and the right child. \cite{binary_tree_definition}
-
 \section{Merkle Tree}
 
-A Merkle Tree is a tree (usually a binary tree) in which every leaf is a hash and every node that is not a leaf is the hash of its child nodes. \cite{merkle_tree_definition}
+A Merkle Tree is a tree (usually a \hyperref[sec:binary-tree]{binary tree}) in which every leaf is a hash and every node that is not a leaf is the hash of its child nodes. \cite{merkle_tree_definition}
+
+\subsection{Binary Tree}
+\label{sec:binary-tree}
+
+A Binary Tree is a tree data structure in which each node has at most two children, referred to as the left child and the right child. \cite{binary_tree_definition}
 
 \subsection{Incremental Merkle Tree}
 
@@ -821,8 +822,6 @@ Update $a_2$ to $a_5$
         \EndProcedure
     \end{algorithmic}
 \end{algorithm}
-
-
 
 \subsubsection{Correctness}
 \label{sec:update-correctness}
