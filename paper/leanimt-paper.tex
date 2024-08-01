@@ -211,6 +211,8 @@ $E = \{(a_0, H_0), (a_1, H_0), (a_2, a_2), (H_0, H_1), (a_2, a_2)\}$
 
 \subsection{Insertion}
 
+Function to insert a new leaf into a LeanIMT.
+
 There are two cases:
 
 \begin{enumerate}
@@ -711,6 +713,8 @@ $\Rightarrow$ In terms of time complexity, it is more efficient to use the \text
 
 \subsection{Update}
 
+Function to update the value of a leaf of a LeanIMT.
+
 There are two cases:
 
 \begin{enumerate}
@@ -903,6 +907,8 @@ The time complexity of the \textit{Update} function is $\boldsymbol{O(\log n)}$.
 
 \subsection{Remove}
 
+Function to remove a leaf from a LeanIMT.
+
 The \textit{remove} function is the same as the \textit{update} function but the value used to update is 0.
 
 You can use a value other than 0, the idea is to use a value that is not a possible value for a correct member in the list.
@@ -978,6 +984,8 @@ The proof of the correctness of this algorithm is the same as the \hyperref[sec:
 The proof of the time complexity of this algorithm is the same as the \hyperref[sec:update-time-complexity]{Update function}.
 
 \subsection{Generate Merkle Proof}
+
+Function to generate a Merkle Proof of a leaf in a LeanIMT.
 
 There are two cases:
 
@@ -1217,6 +1225,8 @@ The time complexity of the \textit{generateProof} function is $\boldsymbol{O(\lo
 
 
 \subsection{Verify Merkle Proof}
+
+Function to verify a Merkle Proof of a leaf in a LeanIMT.
 
 The $verifyProof$ function will verify if a leaf is part of a tree having a Merkle Proof.
 
