@@ -823,8 +823,6 @@ The induction will be done using the depth of the tree. The correctness of the u
 
 $d$: Depth of the tree
 
-$T$: LeanIMT Tree
-
 Base case
 
 $d = 0$
@@ -1211,7 +1209,12 @@ The time complexity of the \textit{generateProof} function is $\boldsymbol{O(\lo
 
 \subsection{Verify Merkle Proof}
 
-There are two cases:
+The $verifyProof$ function will verify if a leaf is part of a tree having a Merkle Proof.
+
+The algorithm will go through the sibling nodes using the path and calculate the parent in the next level of the tree. Then it will check if the calculated root matches the one that is part of the proof.
+If the calculates root matches the one that is part of the root, the algorithm will return true, otherwise it will return false.
+
+There are two example of cases:
 
 \begin{enumerate}
     \item When the node does not have a sibling.
@@ -1221,6 +1224,8 @@ There are two cases:
 \subsubsection*{Case 1: When the node does not have a sibling}
 
 If we want to verify a proof for the node $a_4$.
+
+All the parent hashes will be calculated. Something to notice here is that only one hash operation will be performed.
 
 \vbox{
     \begin{multicols}{2}
@@ -1287,7 +1292,7 @@ siblings: [$H_2$]
 
 If we want to verify a proof for the node $a_3$.
 
-
+All the parent hashes will be calculated.
 
 \vbox{
     \begin{multicols}{2}
