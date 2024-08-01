@@ -718,11 +718,11 @@ Function to update the value of a leaf of a LeanIMT.
 There are two cases:
 
 \begin{enumerate}
-    \item When there is no right sibling.
-    \item When there is right sibling.
+    \item When the node does not have a sibling.
+    \item When the node has a sibling.
 \end{enumerate}
 
-\subsubsection*{Case 1: There is no right sibling}
+\subsubsection*{Case 1: The node does not have a sibling}
 
 
 
@@ -765,7 +765,7 @@ Update $a_4$ to $a_5$
 
 
 
-\subsubsection*{Case 2: There is right sibling}
+\subsubsection*{Case 2: The node has a sibling}
 
 
 
@@ -865,17 +865,17 @@ If for a LeanIMT with depth $d$, the $update$ function works correctly because a
 There are two cases when updating a leaf:
 
 \begin{enumerate}
-    \item When there is no right sibling.
-    \item When there is right sibling.
+    \item When the node does not have a sibling.
+    \item When the node has a sibling.
 \end{enumerate}
 
-\textbf{Case 1: There is no right sibling}
+\textbf{Case 1: The node does not have a sibling}
 
-If the leaf that will be updated does not have a right sibling, then the parent node will have the same value as the leaf node.
+If the leaf that will be updated does not have a sibling, then the parent node will have the same value as the leaf node.
 
-\textbf{Case 2: There is right sibling}
+\textbf{Case 2: The node has a sibling}
 
-If the leaf node has a right sibling, the parent value will be the hash of the leaf node with its right sibling.
+If the leaf node has a sibling, the parent value will be the hash of the leaf node with its sibling.
 
 After those cases, the tree that should be updated has depth $d$. Using the inductive hypothesis, the subtree of depth $d$ will correctly update all the ancestors up to the root.
 
