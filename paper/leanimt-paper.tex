@@ -372,21 +372,27 @@ If we add $a_5$.
 \subsubsection{Correctness}
 \label{sec:insert-correctness}
 
-The idea is to prove that after inserting a new node to the LeanIMT, the tree keeps all the properties.
+Prove that after inserting a new node to the LeanIMT, the tree keeps all the properties.
 
 The Mathematical Induction method will be used to prove the correctness of the algorithm.
 
-$n$: Number of leaves
+$n$: Number of leaves in the tree.
 
-$T$: LeanIMT Tree
+\textbf{Base Case}
 
 $n=0$
 
 If the tree is empty, the Insert function returns a new node with the value of the leaf. This satisfies the LeanIMT poperties because the node does not have children. (Trivial case)
 
+\textbf{Inductive Hypothesis}
+
+Assume that with $n$ nodes, the tree is a correct LeanIMT.
+
+\textbf{Inductive Step}
+
 $n \Rightarrow n+1$
 
-Let's assume that with $n$ nodes, the tree T is a correct LeanIMT and prove that with $n+1$ nodes, T is still a correct LeanIMT. (Inductive step)
+Assume that with $n$ nodes, the tree is a correct LeanIMT and prove that with $n+1$ nodes, the tree is still a correct LeanIMT.
 
 The new node is always added at the end of the list of nodes.
 
@@ -403,7 +409,7 @@ If the new node is a left node, it means that there were an even number of nodes
 
 Then, sice it's a left node, the parents has only one child and the parent has the same value as the child which is is the new node. Then all the ancestors will be constructed following the two properties of the LeanIMT.
 
-Since T was a correct LeanIMT with $n$ nodes and inserting a new node that is a left node follows the properties of the LeanIMT $\Rightarrow$ the entire tree T is still a correct LeanIMT.
+Since the tree was a correct LeanIMT with $n$ nodes and inserting a new node that is a left node follows the properties of the LeanIMT $\Rightarrow$ the entire tree is still a correct LeanIMT.
 
 \textbf{Case 2: The new node is a right node}
 
@@ -411,11 +417,13 @@ If the new node is a right node, it means that there were an odd number of nodes
 
 Since it is a right node, the value of the parent will be the hash of the left child with the right child which is the new node. Then all the ancestors will be constructed following the two properties of the LeanIMT.
 
-Since T was a correct LeanIMT with $n$ nodes and inserting a new node that is a right node follows the properties of the LeanIMT $\Rightarrow$ the entire tree T is still a correct LeanIMT.
+Since the tree was a correct LeanIMT with $n$ nodes and inserting a new node that is a right node follows the properties of the LeanIMT $\Rightarrow$ the entire tree is still a correct LeanIMT.
 
 Then for the two cases 1 and 2 the Insert algorithm follows the LeanIMT properties $\Rightarrow$ the Insert algorithm is correct.
 
+\textbf{Conclusion}
 
+Then by mathematical induction, the $insert$ function works correctly.
 
 \subsubsection{Time complexity}
 
