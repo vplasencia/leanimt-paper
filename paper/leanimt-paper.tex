@@ -221,26 +221,18 @@ $E = \{(a_0, H_0), (a_1, H_0), (a_2, a_2), (H_0, H_1), (a_2, a_2)\}$
 
 Function to insert a new leaf into a LeanIMT.
 
-There are two cases:
+One of these cases will always be seen in each level when a node is being inserted:
 
 \begin{enumerate}
     \item When the new node is a left node.
     \item When the new node is a right node.
 \end{enumerate}
 
-We will always see one of these cases in each level when we are inserting a node. It is like, when you insert a node, if that node is left node, the parent node which is in the next level, will be the same node. If it is a right node the parent node, will be the hash of this node with the node in its left. This algorithm will be the same in each level, not only in level 0.
-
-
-
 \subsubsection*{Case 1: The new node is a left node}
 
-It will not be hashed, it's value will be sent to the next level.
+It will not be hashed, its value will be sent to the next level.
 
-
-
-If we add $a_4$.
-
-
+Adding $a_4$.
 
 $T = (V,E)$
 
@@ -304,7 +296,7 @@ $E = \{(a_0, H_0), (a_1, H_0), (a_2, H_1), (a_3, H_1), (H_0, H_2), (H_1, H_2)\}$
 
 \subsubsection*{Case 2: The new node is a right node}
 
-
+The parent node will be the hash of the node's sibling with itself.
 
 If we add $a_5$.
 
@@ -699,7 +691,7 @@ The time complexity of the Insertion function using a loop is $O(\log (n+m))$.
 
 Going to the root to update or add nodes requires $ \log (n+m)$ number of operations.
 
-If we go to the root to update or add nodes $m$ times (one time per leaf to add) then we will have:
+If going to the root to update or add nodes $m$ times (one time per leaf to add) then the result will be:
 
 
 
@@ -732,7 +724,7 @@ There are two cases:
 
 \subsubsection*{Case 1: The node does not have a sibling}
 
-
+If the node that will be updated does not have a sibling, then the parent node will have the same value as the node.
 
 Update $a_4$ to $a_5$
 
@@ -775,7 +767,7 @@ Update $a_4$ to $a_5$
 
 \subsubsection*{Case 2: The node has a sibling}
 
-
+If the node has a sibling, the parent value will be the hash of the node with its sibling.
 
 Update $a_2$ to $a_5$
 
@@ -879,11 +871,11 @@ There are two cases when updating a leaf:
 
 \textbf{Case 1: The node does not have a sibling}
 
-If the leaf that will be updated does not have a sibling, then the parent node will have the same value as the leaf node.
+If the node that will be updated does not have a sibling, then the parent node will have the same value as the node.
 
 \textbf{Case 2: The node has a sibling}
 
-If the leaf node has a sibling, the parent value will be the hash of the leaf node with its sibling.
+If the node has a sibling, the parent value will be the hash of the node with its sibling.
 
 After those cases, the tree that should be updated has depth $d$. Using the inductive hypothesis, the subtree of depth $d$ will correctly update all the ancestors up to the root.
 
@@ -1004,14 +996,11 @@ There are two cases:
 
 $d$: Depth of the tree
 
-Case 1 only happens when the node is the last node in the level and also a left node.
-
-We will always see one of these two cases. When you want to generate the proof for the case 1, there will always be one node in the siblings list, for the case 2 there will always be $\lceil d \rceil$ number of nodes.
-
-
 \subsubsection*{Case 1: When the node does not have a sibling}
 
+When generating the proof for this case, nothing is added to the proof in that level.
 
+This case only happens when the node is the last node in the level and also a left node.
 
 If we want to generate a proof for the node $a_4$.
 
@@ -1070,7 +1059,7 @@ siblings: [$H_2$]
 
 \subsubsection*{Case 2: When the node has a sibling}
 
-
+When generating the proof for this case, if the node is a right node, 1 will be added to the path and the left sibling will be added to siblings and if the node is a left node, 0 will be added to the path and the right sibling will be added to siblings.
 
 If we want to generate a proof for the node $a_3$.
 
@@ -1250,9 +1239,9 @@ There are two example of cases:
 
 \subsubsection*{Case 1: When the node does not have a sibling}
 
-If we want to verify a proof for the node $a_4$.
+All the parent hashes will be calculated.
 
-All the parent hashes will be calculated. Something to notice here is that only one hash operation will be performed.
+Verifying a proof for node $a_4$.
 
 \vbox{
     \begin{multicols}{2}
@@ -1307,11 +1296,9 @@ siblings: [$H_2$]
 
 \subsubsection*{Case 2: When the node has a sibling}
 
-
-
-If we want to verify a proof for the node $a_3$.
-
 All the parent hashes will be calculated.
+
+Verifying a proof for node $a_3$.
 
 \vbox{
     \begin{multicols}{2}
