@@ -110,7 +110,7 @@ The main motivation for the creation of this data structure was the development 
 
 \section{Merkle Tree}
 
-A Merkle Tree is a tree (usually a \hyperref[sec:binary-tree]{binary tree}) in which every leaf is a hash and every node that is not a leaf is the hash of its child nodes. \cite{merkle_tree_definition}
+A Merkle Tree (MT) is a tree (usually a \hyperref[sec:binary-tree]{binary tree}) in which every leaf is a hash and every node that is not a leaf is the hash of its child nodes. \cite{merkle_tree_definition}
 
 \subsection{Binary Tree}
 \label{sec:binary-tree}
@@ -134,7 +134,11 @@ An Incrememental Merkle Tree (IMT) is a Merkle Tree (MT) designed to be updated 
         [$H_5$ \\ \color{blue600}H($H_2{||}H_3$) [$H_2$ \\ \color{blue600}H($a_4{||}a_5$) [$a_4$] [$a_5$]] [$H_3$ \\ \color{blue600}H($H_6{||}H_7$) [$a_6$] [$a_7$]]]
         ]
     \end{forest}
+    \begin{center}
+        \textit{Example of MT and IMT}
+    \end{center}
 \end{center}
+
 
 
 
@@ -206,6 +210,9 @@ $E = \{(a_0, H_0), (a_1, H_0), (a_2, a_2), (H_0, H_1), (a_2, a_2)\}$
         ]
         ]
     \end{forest}
+    \begin{center}
+        \textit{Example of LeanIMT}
+    \end{center}
 \end{center}
 
 
