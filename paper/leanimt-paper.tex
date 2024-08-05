@@ -221,14 +221,14 @@ $E = \{(a_0, H_0), (a_1, H_0), (a_2, a_2), (H_0, H_1), (a_2, a_2)\}$
 
 Function to insert a new leaf into a LeanIMT.
 
-One of these cases will always be seen in each level when a node is being inserted:
+One of these cases will always be seen in each level when inserting a node:
 
 \begin{enumerate}
-    \item When the new node is a left node.
-    \item When the new node is a right node.
+    \item The new node is a left child.
+    \item The new node is a right child.
 \end{enumerate}
 
-\subsubsection*{Case 1: The new node is a left node}
+\subsubsection*{Case 1: The new node is a left child}
 
 It will not be hashed, its value will be sent to the next level.
 
@@ -294,7 +294,7 @@ $E = \{(a_0, H_0), (a_1, H_0), (a_2, H_1), (a_3, H_1), (H_0, H_2), (H_1, H_2)\}$
 
 
 
-\subsubsection*{Case 2: The new node is a right node}
+\subsubsection*{Case 2: The new node is a right child}
 
 The parent node will be the hash of the node's sibling with itself.
 
@@ -393,25 +393,25 @@ The new node is always added at the end of the list of nodes.
 To insert a new node, there are two possible cases:
 
 \begin{enumerate}
-    \item When the new node is a left node.
-    \item When the new node is a right node.
+    \item When the new node is a left child.
+    \item When the new node is a right child.
 \end{enumerate}
 
-\textbf{Case 1: The new node is a left node}
+\textbf{Case 1: The new node is a left child}
 
-If the new node is a left node, it means that there were an even number of nodes.
+If the new node is a left child, it means that there were an even number of nodes at that level.
 
-Then, sice it's a left node, the parents has only one child and the parent has the same value as the child which is is the new node. Then all the ancestors will be constructed following the two properties of the LeanIMT.
+Then, sice it's a left child, the parent has only one child and the parent has the same value as the child which is is the new node. Then all the ancestors will be constructed following the two properties of the LeanIMT.
 
-Since the tree was a correct LeanIMT with $n$ nodes and inserting a new node that is a left node follows the properties of the LeanIMT $\Rightarrow$ the entire tree is still a correct LeanIMT.
+Since the tree was a correct LeanIMT with $n$ nodes and inserting a new node that is a left child follows the properties of the LeanIMT $\Rightarrow$ the entire tree is still a correct LeanIMT.
 
-\textbf{Case 2: The new node is a right node}
+\textbf{Case 2: The new node is a right child}
 
-If the new node is a right node, it means that there were an odd number of nodes.
+If the new node is a right child, it means that there were an odd number of nodes at that level.
 
-Since it is a right node, the value of the parent will be the hash of the left child with the right child which is the new node. Then all the ancestors will be constructed following the two properties of the LeanIMT.
+Since it is a right child, the value of the parent will be the hash of the left child with the right child which is the new node. Then all the ancestors will be constructed following the two properties of the LeanIMT.
 
-Since the tree was a correct LeanIMT with $n$ nodes and inserting a new node that is a right node follows the properties of the LeanIMT $\Rightarrow$ the entire tree is still a correct LeanIMT.
+Since the tree was a correct LeanIMT with $n$ nodes and inserting a new node that is a right child follows the properties of the LeanIMT $\Rightarrow$ the entire tree is still a correct LeanIMT.
 
 Then for the two cases 1 and 2 the Insert algorithm follows the LeanIMT properties $\Rightarrow$ the Insert algorithm is correct.
 
@@ -767,7 +767,7 @@ Update $a_4$ to $a_5$
 
 \subsubsection*{Case 2: The node has a sibling}
 
-If the node has a sibling, the parent value will be the hash of the node with its sibling.
+If the node has a sibling, the parent value will be the hash of the new value of the node with its sibling.
 
 Update $a_2$ to $a_5$
 
@@ -996,7 +996,7 @@ There are two cases:
 
 $d$: Depth of the tree
 
-\subsubsection*{Case 1: When the node does not have a sibling}
+\subsubsection*{Case 1: The node does not have a sibling}
 
 When generating the proof for this case, nothing is added to the proof in that level.
 
@@ -1057,7 +1057,7 @@ siblings: [$H_2$]
 
 
 
-\subsubsection*{Case 2: When the node has a sibling}
+\subsubsection*{Case 2: The node has a sibling}
 
 When generating the proof for this case, if the node is a right node, 1 will be added to the path and the left sibling will be added to siblings and if the node is a left node, 0 will be added to the path and the right sibling will be added to siblings.
 
