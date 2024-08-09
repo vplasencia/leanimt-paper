@@ -119,7 +119,7 @@ A Binary Tree is a tree data structure in which each node has at most two childr
 
 \subsection{Incremental Merkle Tree}
 
-An Incrememental Merkle Tree (IMT) is a Merkle Tree (MT) designed to be updated efficiently.
+An Incremental Merkle Tree (IMT) is a Merkle Tree (MT) designed to be updated efficiently.
 
 % align to the left
 \raggedright
@@ -224,8 +224,8 @@ Function to insert a new leaf into a LeanIMT.
 One of these cases will always be seen in each level when inserting a node:
 
 \begin{enumerate}
-    \item The new node is a left child.
-    \item The new node is a right child.
+    \item The new node is the left child.
+    \item The new node is the right child.
 \end{enumerate}
 
 \subsubsection*{Case 1: The new node is a left child}
@@ -366,7 +366,7 @@ If we add $a_5$.
 \subsubsection{Correctness}
 \label{sec:insert-correctness}
 
-Prove that after inserting a new node to the LeanIMT, the tree keeps all the properties.
+Prove that after inserting a new node into the LeanIMT, the tree keeps all the properties.
 
 The Mathematical Induction method will be used to prove the correctness of this algorithm.
 
@@ -376,7 +376,7 @@ $n$: Number of leaves in the tree.
 
 $n=0$
 
-If the tree is empty, the Insert function returns a new node with the value of the leaf. This satisfies the LeanIMT poperties because the node does not have children. (Trivial case)
+If the tree is empty, the Insert function returns a new node with the value of the leaf. This satisfies the LeanIMT properties because the node does not have children. (Trivial case)
 
 \textbf{Inductive Hypothesis}
 
@@ -401,7 +401,7 @@ To insert a new node, there are two possible cases:
 
 If the new node is a left child, it means that there were an even number of nodes at that level.
 
-Then, sice it's a left child, the parent has only one child and the parent has the same value as the child which is the new node. Then all the ancestors will be constructed following the two properties of the LeanIMT.
+Then, since it's a left child, the parent has only one child and the parent has the same value as the child which is the new node. Then all the ancestors will be constructed following the two properties of the LeanIMT.
 
 Since the tree was a correct LeanIMT with $n$ nodes and inserting a new node that is a left child follows the properties of the LeanIMT $\Rightarrow$ the entire tree is still a correct LeanIMT.
 
@@ -1188,7 +1188,7 @@ If the node does not have a sibling, nothing is added to the proof.
 
 \textbf{Case 2: The node has a sibling}
 
-If the node has a sibling, the path and siblings arrays are updated accordingly.
+If the node has a sibling, the path and sibling array is updated accordingly.
 If the node is a right node, 1 will be added to the path and the left sibling will be added to siblings.
 If the node is a left node, 0 will be added to the path and the right sibling will be added to siblings.
 
@@ -1228,9 +1228,9 @@ Function to verify a Merkle Proof of a leaf in a LeanIMT.
 The $verifyProof$ function will verify if a leaf is part of a tree having a Merkle Proof.
 
 The algorithm will go through the sibling nodes using the path and calculate the parent in the next level of the tree. Then it will check if the calculated root matches the one that is part of the proof.
-If the calculates root matches the one that is part of the root, the algorithm will return true, otherwise it will return false.
+If the calculated root matches the one that is part of the root, the algorithm will return true, otherwise it will return false.
 
-There are two example of cases:
+There are two examples of cases:
 
 \begin{enumerate}
     \item When the node does not have a sibling.
