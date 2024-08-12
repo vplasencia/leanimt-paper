@@ -106,7 +106,7 @@ This technical document aims to present and explain a new data structure called 
 % Creates a subsection for the Motivation within Introduction
 \subsection{Motivation}
 
-The main motivation for the creation of this data structure was the development of the new version of the Semaphore protocol \cite{semaphore_v1_whitepaper} \cite{semaphore_website} (version 4). Semaphore version 3 was using an IMT \cite{imt_typescript} \cite{imt_solidity}, but it was necessary to have a more performant and lower gas-cost alternative.
+The main motivation for the creation of this data structure was the development of the new version of the Semaphore protocol \cite{semaphore_v1_whitepaper} \cite{semaphore_website} (version 4). Semaphore version 3 uses an IMT \cite{imt_typescript} \cite{imt_solidity}, which is, however, rather inefficient and expensive when inserting the first leaves and when the number of leaves exceeds the maximum size supported by the tree.
 
 \section{Merkle Tree}
 
@@ -193,7 +193,7 @@ $V = \{a_0, a_1, a_2, H_0, H_1, H_2\}$
 
 
 
-$E = \{(a_0, H_0), (a_1, H_0), (a_2, a_2), (H_0, H_1), (a_2, a_2)\}$
+$E = \{(a_0, H_0), (a_1, H_0), (a_2, a_2), (H_0, H_1), (a_2, H_1)\}$
 
 
 
@@ -401,7 +401,7 @@ To insert a new node, there are two possible cases:
 
 If the new node is a left child, it means that there were an even number of nodes at that level.
 
-Then, sice it's a left child, the parent has only one child and the parent has the same value as the child which is the new node. Then all the ancestors will be constructed following the two properties of the LeanIMT.
+Then, since it's a left child, the parent has only one child and the parent has the same value as the child which is the new node. Then all the ancestors will be constructed following the two properties of the LeanIMT.
 
 Since the tree was a correct LeanIMT with $n$ nodes and inserting a new node that is a left child follows the properties of the LeanIMT $\Rightarrow$ the entire tree is still a correct LeanIMT.
 
@@ -529,7 +529,7 @@ Insert $a_4$ and $a_5$.
         \State Add $leaves$ to the tree leaves
 
         \For{level from 0 to depth - 1}
-        \State numberOfNodes $\gets$ $\lceil nodes[level].length / 2 \rceil$ \Comment{ Calculate the number of nodes of the next level. numberOfNodes will be the smallest integrer which is greater than or equal to the result of dividing the number of nodes of the level by 2.}
+        \State numberOfNodes $\gets$ $\lceil nodes[level].length / 2 \rceil$ \Comment{ Calculate the number of nodes of the next level. numberOfNodes will be the smallest integer which is greater than or equal to the result of dividing the number of nodes of the level by 2.}
         \For{index from $startIndex$ to numberOfNodes - 1}
         \State rightNode $\gets$ nodes[level][index * 2 + 1] \Comment{Get the right node if exists.}
         \State leftNode $\gets$ nodes[level][index * 2] \Comment{Get the left node if exists.}
@@ -1000,7 +1000,7 @@ $d$: Depth of the tree
 
 When generating the proof for this case, nothing is added to the proof in that level.
 
-This case only happens when the node is the last node in the level and also a left node.
+This case only happens when the node is the last node in the level and is also a left node.
 
 If we want to generate a proof for the node $a_4$.
 
@@ -1493,8 +1493,8 @@ GitHub repository to run Solidity benchmarks: \url{https://github.com/privacy-sc
 For example:
 
 \begin{itemize}
-    \item If I the IMT has 4 members and I want to add 1 new member the tree depth used will be 3.
-    \item If I the IMT has 5 members and I want to add 1 new member the tree depth used will be 3.
+    \item If the IMT has 4 members and I want to add 1 new member the tree depth used will be 3.
+    \item If the IMT has 5 members and I want to add 1 new member the tree depth used will be 3.
 \end{itemize}
 
 \subsubsection{Node.js}
