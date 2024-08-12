@@ -998,7 +998,7 @@ $d$: Depth of the tree
 
 \subsubsection*{Case 1: The node does not have a sibling}
 
-When generating the proof for this case, nothing is added to the proof in that level.
+When generating the proof for this case, nothing is added to the proof at that level.
 
 This case only happens when the node is the last node in the level and is also a left node.
 
@@ -1360,7 +1360,7 @@ siblings: [$a_2$, $H_0$, $a_2$]
         \State \{ root, leaf, siblings, index \} $\gets$ proof \Comment{Deconstruct the proof}
         \State node $\gets$ leaf
         \For{i from 0 to siblings.length - 1}
-        \State isOdd $\gets$ devide index by 2 $i$ times and check if the result is odd
+        \State isOdd $\gets$ divide index by 2 $i$ times and check if the result is odd
         \If{isOdd is true} \Comment{$node$ is a right child}
         \State node $\gets$ $hash(siblings[i], node)$
         \Else \Comment{It's a left node}
