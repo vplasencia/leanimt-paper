@@ -83,7 +83,7 @@
 % Creates a section for the Abstract
 \section*{Abstract}
 
-This technical document presents the LeanIMT (Lean Incremental Merkle Tree), a data structure used to represent a group of elements. The LeanIMT is designed to optimize performance and reduce gas costs, making it suitable for zero-knowledge \cite{zero_knowledge_definition} protocols and applications.
+This technical document presents the LeanIMT (Lean Incremental Merkle Tree), a data structure used to represent a group of elements efficiently. The LeanIMT is designed to optimize performance and reduce gas costs, making it suitable for zero-knowledge \cite{zero_knowledge_definition} protocols and applications.
 
 \newpage
 % Created: \date{August 3, 2024}
@@ -135,7 +135,7 @@ An Incremental Merkle Tree (IMT) is a Merkle Tree (MT) designed to be updated ef
         ]
     \end{forest}
     \begin{center}
-        \textit{Example of MT and IMT}
+        \textit{Example of IMT}
     \end{center}
 \end{center}
 
@@ -521,7 +521,7 @@ Insert $a_4$ and $a_5$.
     \caption{LeanIMT InsertMany algorithm}\label{insertMany}
     \begin{algorithmic}[1]
         \Procedure{InsertMany}{$leaves$: List of nodes}
-        \State $startIndex$ $\gets$ $\lfloor size/2 \rfloor$ \Comment{Divides the size of the tree by 2 and discards the remainder.}
+        \State $startIndex$ $\gets$ $\lfloor size/2 \rfloor$ \Comment{Divides the size of the tree by 2 and discards the remainder. startIndex is the index to start updating values at the next level.}
         \State Add $leaves$ to the tree leaves
 
         \For{level from 0 to depth - 1}
