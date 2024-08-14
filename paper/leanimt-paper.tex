@@ -1471,6 +1471,10 @@ GitHub repository to run Solidity benchmarks: \url{https://github.com/privacy-sc
 
 \subsection{TypeScript/JavaScript}
 
+\textbf{Note:} The following TypeScript/JavaScript benchmarks demonstrate how to perform the same operations for each data structure. This means that even if the remove function of the IMT is called $Delete$ in the implementation, it will be referred to as $Remove$ in the benchmarks. Additionally, the IMT does not have a function called $InsertMany$, the $IMT - InsertMany$ benchmarks use the $Insert$ function in a loop to simulate inserting multiple members at the same time.
+
+\textbf{Note:} Something to highlight is that the IMT includes an optimization for adding multiple members within the data structure's constructor.
+
 \textbf{Note:} The IMT has a static depth. To run the benchmarks, the minimum depth necessary to perform the operation was used unless a specific tree depth was specified.
 
 For example:
