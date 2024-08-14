@@ -1143,7 +1143,13 @@ siblings: [$a_2$, $H_0$, $a_4$]
     \end{algorithmic}
 \end{algorithm}
 
+\textbf{Note:}
 
+The $index$ parameter of the function and the $index$ returned in the proof are different variables that share the same name but may not always have same value. The $index$ in the parameter is the index of the element that will be used to generate the proof and the $index$ in the proof is the decimal representation of the reverse of the path.
+
+If the number of elements in the path is equal to the depth of the tree, it means that all levels (except the root level) were included in the proof because they are necessary to calculate the root. In this case, the $index$ in the proof will have the same value as the $index$ in the function parameter.
+
+However, if the path contains fewer elements than the depth of the tree, it means that some levels (except the root level) were omitted from the proof because they were unnecessary for calculating the root value. In this case, the two $index$ values will differ.
 
 \subsubsection{Correctness}
 
