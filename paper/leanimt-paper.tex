@@ -185,7 +185,7 @@ $T = (V,E)$
 
 
 
-$V = \{a_0, a_1, a_2, H_0, H_1, H_2\}$
+$V = \{a_0, a_1, a_2, H_0, H_1\}$
 
 
 
@@ -362,7 +362,7 @@ If we add $a_5$.
 \subsubsection{Correctness}
 \label{sec:insert-correctness}
 
-Prove that after inserting a new node into the LeanIMT, the tree keeps all the properties.
+Prove that after inserting a new leaf into the LeanIMT, the tree keeps all the properties.
 
 The Mathematical Induction method will be used to prove the correctness of this algorithm.
 
@@ -376,15 +376,15 @@ If the tree is empty, the Insert function returns a new node with the value of t
 
 \textbf{Inductive Hypothesis}
 
-Assume that with $n$ nodes, the tree is a correct LeanIMT.
+Assume that with $n$ leaves, the tree is a correct LeanIMT.
 
 \textbf{Inductive Step}
 
 $n \Rightarrow n+1$
 
-Assume that with $n$ nodes, the tree is a correct LeanIMT and prove that with $n+1$ nodes, the tree is still a correct LeanIMT.
+Assume that with $n$ leaves, the tree is a correct LeanIMT and prove that with $n+1$ leaves, the tree is still a correct LeanIMT.
 
-The new node is always added at the end of the list of nodes.
+The new node is always added at the end of the list of leaves.
 
 To insert a new node, there are two possible cases:
 
@@ -626,7 +626,7 @@ $\sum_{k=0}^{\infty} a * r ^ n = \frac{a}{1-r} = \frac{1}{1-\frac{1}{2}}$
 
 
 
-$\phantom{\sum_{k=0}^{\infty} a * r ^ n = \frac{a}{1-r}} = \frac{1}{2}$
+$\phantom{\sum_{k=0}^{\infty} a * r ^ n = \frac{a}{1-r}} = \frac{1}{\frac{1}{2}}$
 
 
 
@@ -634,15 +634,15 @@ $\phantom{\sum_{k=0}^{\infty} a * r ^ n = \frac{a}{1-r}} = 2$
 
 
 
-$\sum_{k=0}^{d} 1 = \frac{a}{1-r} = d + 1$
+$\sum_{k=0}^{d} 1 = d + 1$
 
 
 
-$\phantom{\sum_{k=0}^{d} 1 = \frac{a}{1-r}} = O(\log (n+m)) + 1$
+$\phantom{\sum_{k=0}^{d} 1} = O(\log (n+m)) + 1$
 
 
 
-$\phantom{\sum_{k=0}^{d} 1 = \frac{a}{1-r}} \Rightarrow O(\log (n+m))$
+$\phantom{\sum_{k=0}^{d} 1} \Rightarrow O(\log (n+m))$
 
 
 
