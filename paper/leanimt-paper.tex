@@ -158,7 +158,7 @@ The \textbf{LeanIMT} (Lean Incremental Merkle Tree) is a Binary IMT.
 The LeanIMT has two properties:
 
 \begin{enumerate}
-    \item Every node with two children is the hash of its two child nodes.
+    \item Every node with two children has the hash of its left and right nodes.
     \item Every node with one child has the same value as its child node.
 \end{enumerate}
 
@@ -546,41 +546,20 @@ Insert $a_4$ and $a_5$.
 
 \subsubsection{Correctness}
 
-To prove the correctness of the $insertMany$ algorithm, \hyperref[sec:insert-correctness]{the correctness of the $insert$ function will be used}.
+The idea is to prove that having a correct LeanIMT with $n$ leaves, after using the $InsertMany$ function to insert $m$ new leaves, the resulting tree is also a correct LeanIMT.
 
-The $insertMany$ function inserts multiple new leaf nodes into the LeanIMT and updates the tree structure accordingly. The correctness of the algorithm requires verifying that the tree maintains its structure and all nodes correctly reflect the new leaves.
+Taking these LeanIMT properties as invariants:
 
-The Mathematical Induction method will be used to prove the correctness of this algorithm.
+\begin{enumerate}
+    \item Every node with two children has the hash of its left and right nodes.
+    \item Every node with one child has the same value as its child node.
+\end{enumerate}
 
-$n$: Number of leaves in the tree.
+The $InsertMany$ algorithm will add all the new leaves and then calculate the parent hashes. If the parent node has two children it will have the hash of its left and right nodes, if it has one child, it will have the same value as its child.
 
-$k$: Number of leaves to insert into the tree.
+Every time a new node is updated or added, all the invariants are hold because the invariants are used to update/add nodes.
 
-\textbf{Base Case}
-
-$k=1$
-
-The base case is if 1 leaf is inserted. This is equivalent to the $insert$ function.
-If the tree is correct after inserting 1 leaf, then the $insertMany$ function is correct for inserting a single leaf.
-The tree will have $n+1$ leaves and will be a correct LeanIMT.
-
-\textbf{Inductive Hypothesis}
-
-Assume that the $insertMany$ function works correctly for inserting $k$ leaves, because the tree structure is maintained and all nodes are correctly updated up to the root. Then the LeanIMT is correct with $n+k$ leaves.
-
-\textbf{Inductive Step}
-
-$k \Rightarrow k+1$
-
-Prove that if the $insertMany$ function works for inserting $k$ leaves, it also works for inserting $k+1$ leaves. Then the LeanIMT will be correct with $n+k+1$ leaves.
-
-Since the tree is initially correct with $n$ leaves and inserting $k$ new leaves using the $insertMany$ functions results in a correct LeanIMT with $n+k$ leaves by inductive hypothesis, then inserting 1 additional leaf using the $insert$ function results in a correct LeanIMT with $n+k+1$ leaves because it was proven that the $insert$ function is correct.
-
-Then by inductive hypothesis and the correctness of the $insert$ function, the entire tree remains correct after inserting $k+1$ leaves.
-
-\textbf{Conclusion}
-
-By mathematical induction, the $insertMany$ function works correctly for inserting any number of leaves into the tree.
+Then all the invariants are hold before, during and after inserting $m$ new leaves to a LeanIMT.
 
 \subsubsection{Time complexity}
 
