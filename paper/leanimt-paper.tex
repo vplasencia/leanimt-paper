@@ -555,11 +555,11 @@ Taking these LeanIMT properties as invariants:
     \item Every node with one child has the same value as its child node.
 \end{enumerate}
 
-The $InsertMany$ algorithm will add all the new leaves and then calculate the parent hashes. If the parent node has two children it will have the hash of its left and right nodes, if it has one child, it will have the same value as its child.
+The $InsertMany$ algorithm will add all the new leaves and then calculate the parent hashes. If a parent node has two children its value will be the hash of its left and right nodes, if it has one child, it will have the same value as its child.
 
-Every time a new node is updated or added, all the invariants are hold because the invariants are used to update/add nodes.
+Every time a new node is updated or added, all the invariants are maintained because the invariants are used to update/add nodes.
 
-Then all the invariants are hold before, during and after inserting $m$ new leaves to a LeanIMT.
+Then all the invariants are maintained before, during and after inserting $m$ new leaves into a LeanIMT.
 
 \subsubsection{Time complexity}
 
