@@ -158,7 +158,7 @@ The \textbf{LeanIMT} (Lean Incremental Merkle Tree) is a Binary IMT.
 The LeanIMT has two properties:
 
 \begin{enumerate}
-    \item Every node with two children has the hash of its left and right nodes.
+    \item Every node with two children is the hash of its left and right nodes.
     \item Every node with one child has the same value as its child node.
 \end{enumerate}
 
@@ -551,7 +551,7 @@ The idea is to prove that having a correct LeanIMT with $n$ leaves, after using 
 Taking these LeanIMT properties as invariants:
 
 \begin{enumerate}
-    \item Every node with two children has the hash of its left and right nodes.
+    \item Every node with two children is the hash of its left and right nodes.
     \item Every node with one child has the same value as its child node.
 \end{enumerate}
 
