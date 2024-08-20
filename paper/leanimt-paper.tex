@@ -767,7 +767,7 @@ Update $a_2$ to $a_5$
         \begin{center}
             \begin{forest}
                 for tree={edge path={\noexpand\path[\forestoption{edge}] (\forestOve{\forestove{@parent}}{name}.parent anchor) -- +(0,-12pt)-| (\forestove{name}.child anchor)\forestoption{edge label};}, rectangle, draw, align=center}
-                [$H_3$, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt
+                [$H_6$, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt
                 [
                 $H_5$, edge={blue600, line width=1pt}, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt [$H_0$ [$a_0$] [$a_1$]] [$H_4$, edge={blue600, line width=1pt}, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt [$a_5$, edge={blue600, line width=1pt}, draw=blue600, top color=blue600!0, bottom color=blue600!0, line width=1pt] [$a_3$]]
                 ]
@@ -1098,7 +1098,7 @@ siblings: [$a_2$, $H_0$, $a_4$]
     \begin{algorithmic}[1]
         \Procedure{generateProof}{$index$}
         \State siblings $\gets$ empty list \Comment{List to store the nodes necessary to rebuild the root.}
-        \State path $\gets$ empty list \Comment{List of $0$s or $1$s to help rebuild the root. $0$ if the current node is a left node and the sibling is a right node and $1$ otherwise.}
+        \State path $\gets$ empty list \Comment{List of $0$s or $1$s to help rebuild the root. $0$ if the current node is a left node with a sibling and $1$ if the current node is a right node.}
         \For{level from 0 to depth - 1}
         \State isRightNode $\gets$ index is odd
         \If{isRightNode is true} \Comment{It's a right node}
@@ -1378,7 +1378,7 @@ If the current node (which is the leaf at the beginning of the algorithm) is a r
 If the current node is a left node, the parent value will be the hash of the current node with the right sibling.
 Then, the current node will be the parent node.
 
-After running that once, the tree that should verify the proof has depth d. Using the inductive hypothesis, the subtree of depth d will correctly return the values in the proof.
+After running that once, the tree that should verify the proof has depth d. Using the inductive hypothesis, the subtree of depth d will successfully verify the values of the proof.
 
 \textbf{Conclusion}
 
@@ -1458,9 +1458,9 @@ GitHub repository to run Solidity benchmarks: \url{https://github.com/privacy-sc
 
 \textbf{Note:} The following TypeScript/JavaScript benchmarks demonstrate how to perform the same operations for each data structure. This means that even if the remove function of the IMT is called $Delete$ in the implementation, it will be referred to as $Remove$ in the benchmarks. Additionally, the IMT does not have a function called $InsertMany$, the $IMT - InsertMany$ benchmarks use the $Insert$ function in a loop to simulate inserting multiple members at the same time.
 
-\textbf{Note:} Something to highlight is that the IMT includes an optimization for adding multiple members within the data structure's constructor.
+\textbf{Note:} Although the IMT does not have a batch insertion function, it does include an optimization for adding multiple members through its constructor.
 
-\textbf{Note:} The IMT has a static depth. To run the benchmarks, the minimum depth necessary to perform the operation was used unless a specific tree depth was specified.
+\textbf{Note:} The IMT has a static depth. To run the benchmarks, the minimum depth necessary to perform the operation was used.
 
 For example:
 
@@ -1741,13 +1741,15 @@ For example:
 
 \subsubsection{LeanIMT: Insert Loop vs Batch Insertion}
 
+Comparing the LeanIMT $Insert$ function in a loop with the LeanIMT $InsertMany$ function.
+
 % Table 
 
 \pgfplotstableread[col sep=comma]{data/insert-many-leanimt-table.csv}\datatable
 
 \begin{table}[H]
     \centering
-    \caption{Insert Function (1000 iterations)}
+    \caption{Insert Function (100 iterations)}
     \pgfplotstabletypeset[
         col sep=comma,
         header=true,
@@ -1780,7 +1782,7 @@ For example:
             \addlegendentry{InsertMany}
         \end{axis}
     \end{tikzpicture}
-    \caption{Batch Insertion LeanIMT}
+    \caption{Batch Insertion LeanIMT (100 iterations)}
     \label{fig:insertMany-line}
 \end{figure}
 
@@ -1811,7 +1813,7 @@ For example:
             \addlegendentry{InsertMany}
         \end{axis}
     \end{tikzpicture}
-    \caption{Batch Insertion LeanIMT (1000 iterations)}
+    \caption{Batch Insertion LeanIMT (100 iterations)}
     \label{fig:insertMany-bar}
 \end{figure}
 
@@ -1868,7 +1870,7 @@ This technical document explains the LeanIMT algorithms, proves their correctnes
 
 \subsection{Future Work}
 
-As future work, a function to update many members at once (similar to the \textit{inserMany} function to insert many members at once) will be developed. Additionally, a Rust implementation of the data structure will be created to benchmark the performance in Node.js and browser environments.
+As future work, a function to update many members at once (similar to the \textit{insertMany} function to insert many members at once) will be developed. Additionally, a Rust implementation of the data structure will be created to benchmark the performance in Node.js and browser environments.
 
 % Allow LaTeX to break lines more flexibly in the bibliography
 \sloppy
