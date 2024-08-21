@@ -421,35 +421,22 @@ Then by mathematical induction, the $insert$ function works correctly.
 
 $n$: Number of leaves in the tree.
 
-$d$: Tree depth.
-
-
+$d$: Tree depth after inserting the new leaf.
 
 Every time a new node is added, it is necessary to update or add the ancestors up to the root of the tree.
 
+Number of operations when adding a leaf: $d + 1$
 
-\label{InsertProof}
-Number of operations when adding a leaf: $\lceil d \rceil$
+$d + 1 = O(\log n) + 1$
 
-
-
-$\lceil d \rceil \leq d + 1$
+$\phantom{d + 1} \Rightarrow \boxed{O(\log n)}$
 
 
+$d = \lceil \log (n+1) \rceil \leq \log (n+1) + 1$
 
-$\phantom{\lceil m \rceil} \leq O(\log n) + 1$
+$\phantom{d = \lceil \log (n+1) \rceil} \leq O(\log n) + 1$
 
-
-
-$\phantom{\lceil m \rceil} \Rightarrow \boxed{O(\log n)}$
-
-
-
-$d = \lceil \log (n) \rceil \leq \log (n) + 1$
-
-
-
-$\phantom{d = \lceil \log (n) \rceil} \Rightarrow O(\log n)$
+$\phantom{d = \lceil \log (n+1) \rceil} \Rightarrow O(\log n)$
 
 
 
@@ -565,23 +552,17 @@ Then all the invariants are maintained before, during and after inserting $m$ ne
 
 $n$: Number of leaves in the tree.
 
-$d$: Tree depth.
-
 $m$: Number of leaves to insert.
 
-
+$d$: Tree depth after inserting the $m$ new leaves.
 
 Number of operations when inserting elements in batch:
 
-
-
-$\lceil m \rceil + \lceil \frac{m}{2} \rceil + \lceil \frac{m}{4} \rceil + ... + \lceil \frac{m}{2^d} \rceil$
-
-
+$ m + \lceil \frac{m}{2} \rceil + \lceil \frac{m}{4} \rceil + ... + \lceil \frac{m}{2^d} \rceil$
 
 That is the same as $\sum_{k=0}^{d} \lceil \frac{m}{2^k} \rceil$
 
-
+\textbf{Note:} $ m = \lceil m \rceil$
 
 $\lceil m \rceil \leq m + 1$ then $\lceil \frac{m}{2^k} \rceil \leq \frac{m}{2^k} + 1$
 
@@ -660,15 +641,11 @@ Then the time complexity of the \textit{InsertMany} function is $\boldsymbol{O(m
 
 
 
-The time complexity of the Insertion function using a loop is $O(\log (n+m))$.
+The time complexity of the Insertion function using a loop is $O(m \log (n+m))$.
 
-
-
-Going to the root to update or add nodes requires $ \log (n+m)$ number of operations.
+Going to the root to update or add nodes requires $ O(\log (n+m))$ number of operations.
 
 If going to the root to update or add nodes $m$ times (one time per leaf to add) then the result will be:
-
-
 
 $m * \log (n+m) \Rightarrow \boxed{O(m \log (n+m))}$
 
@@ -866,18 +843,24 @@ $n$: Number of leaves in the tree.
 
 $d$: Tree depth.
 
-
-
 Every time a leaf is updated, it is necessary to update all the ancestors up to the root of the tree.
 
+\label{UpdateTimeComplexity}
+Number of operations when updating a leaf: $d + 1$
+
+$d + 1 = O(\log n) + 1$
+
+$\phantom{d + 1} \Rightarrow \boxed{O(\log n)}$
 
 
-Number of operations when updating a leaf: $\lceil d \rceil$
+$d = \lceil \log (n) \rceil \leq \log (n) + 1$
 
-This proof is the same as the \hyperref[InsertProof]{proof of the time complexity of the Insert function}.
+$\phantom{d = \lceil \log (n) \rceil} \leq O(\log n) + 1$
+
+$\phantom{d = \lceil \log (n) \rceil} \Rightarrow O(\log n)$
+
 
 The time complexity of the \textit{Update} function is $\boldsymbol{O(\log n)}$.
-
 
 
 \subsection{Remove}
@@ -1196,9 +1179,9 @@ To generate a Merkle Proof it is necessary to visit all the ancestors of the lea
 
 
 
-Number of operations to generate a Merkle Proof: $\lceil d \rceil$
+Number of operations to generate a Merkle Proof: $d + 1$
 
-This proof is the same as the \hyperref[InsertProof]{proof of the time complexity of the Insert function}.
+This proof is the same as the \hyperref[UpdateTimeComplexity]{proof of the time complexity of the Update function}.
 
 The time complexity of the \textit{generateProof} function is $\boldsymbol{O(\log n)}$.
 
@@ -1393,15 +1376,11 @@ $n$: Number of leaves in the tree.
 
 $d$: Tree depth.
 
+To verify a Merkle Proof it is necessary to visit (rebuild) all the ancestors of the leaf up to the root of the tree and then compare if the calculated root matches the root that is part of the Merkle Proof.
 
+Number of operations to verify a Merkle Proof (worst case): $d + 1$
 
-To verify a Merkle Proof it is necessary to visit (rebuild) all the ancestors of the leaf up to the root of the tree.
-
-
-
-Number of operations to verify a Merkle Proof: $\lceil d \rceil$
-
-This proof is the same as the \hyperref[InsertProof]{proof of the time complexity of the Insert function}.
+This proof is the same as the \hyperref[UpdateTimeComplexity]{proof of the time complexity of the Update function}.
 
 The time complexity of the \textit{verifyProof} function is $\boldsymbol{O(\log n)}$.
 
