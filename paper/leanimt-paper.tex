@@ -101,7 +101,7 @@ Updated: \date{\today}
 % Creates a section for the Introduction
 \section{Introduction}
 
-This technical document aims to present and explain a new data structure called LeanIMT (Lean Incremental Merkle Tree). It covers the definition of Merkle Tree (MT), Incremental Merkle Tree (IMT) and Lean Incremental Merkle Tree (LeanIMT). It also explains the motivation behind creating this data structure and provides detailed algorithm explanations with pseudocode, correctness proofs and time complexity analyses. It also includes a section on benchmarks to illustrate performance improvements.
+This technical document aims to present and explain a new data structure called LeanIMT (Lean Incremental Merkle Tree). It covers the definition of Merkle Tree (MT), Incremental Merkle Tree (IMT) and Lean Incremental Merkle Tree (LeanIMT). It also explains the motivation behind creating this data structure and provides detailed algorithm explanations with pseudocode and time complexity analyses. It also includes a section on benchmarks to illustrate performance improvements.
 
 % Creates a subsection for the Motivation within Introduction
 \subsection{Motivation}
@@ -358,66 +358,7 @@ If we add $a_5$.
 \end{algorithm}
 
 
-
-\subsubsection{Correctness}
-\label{sec:insert-correctness}
-
-Prove that after inserting a new leaf into the LeanIMT, the tree keeps all the properties.
-
-The Mathematical Induction method will be used to prove the correctness of this algorithm.
-
-$n$: Number of leaves in the tree.
-
-\textbf{Base Case}
-
-$n=0$
-
-If the tree is empty, the Insert function returns a new node with the value of the leaf. This satisfies the LeanIMT properties because the node does not have children. (Trivial case)
-
-\textbf{Inductive Hypothesis}
-
-Assume that with $n$ leaves, the tree is a correct LeanIMT.
-
-\textbf{Inductive Step}
-
-$n \Rightarrow n+1$
-
-Assume that with $n$ leaves, the tree is a correct LeanIMT and prove that with $n+1$ leaves, the tree is still a correct LeanIMT.
-
-The new node is always added at the end of the list of leaves.
-
-To insert a new node, there are two possible cases:
-
-\begin{enumerate}
-    \item When the new node is a left child.
-    \item When the new node is a right child.
-\end{enumerate}
-
-\textbf{Case 1: The new node is a left child}
-
-If the new node is a left child, it means that there were an even number of nodes at that level.
-
-Then, since it's a left child, the parent has only one child and the parent has the same value as the child which is the new node. Then all the ancestors will be constructed following the two properties of the LeanIMT.
-
-Since the tree was a correct LeanIMT with $n$ nodes and inserting a new node that is a left child follows the properties of the LeanIMT $\Rightarrow$ the entire tree is still a correct LeanIMT.
-
-\textbf{Case 2: The new node is a right child}
-
-If the new node is a right child, it means that there were an odd number of nodes at that level.
-
-Since it is a right child, the value of the parent will be the hash of the left child with the right child which is the new node. Then all the ancestors will be constructed following the two properties of the LeanIMT.
-
-Since the tree was a correct LeanIMT with $n$ nodes and inserting a new node that is a right child follows the properties of the LeanIMT $\Rightarrow$ the entire tree is still a correct LeanIMT.
-
-Then for the two cases 1 and 2 the Insert algorithm follows the LeanIMT properties $\Rightarrow$ the Insert algorithm is correct.
-
-\textbf{Conclusion}
-
-Then by mathematical induction, the $insert$ function works correctly.
-
 \subsubsection{Time complexity}
-
-
 
 $n$: Number of leaves in the tree.
 
@@ -529,24 +470,6 @@ Insert $a_4$ and $a_5$.
     \end{algorithmic}
 \end{algorithm}
 
-
-
-\subsubsection{Correctness}
-
-The idea is to prove that having a correct LeanIMT with $n$ leaves, after using the $InsertMany$ function to insert $m$ new leaves, the resulting tree is also a correct LeanIMT.
-
-Taking these LeanIMT properties as invariants:
-
-\begin{enumerate}
-    \item Every node with two children is the hash of its left and right nodes.
-    \item Every node with one child has the same value as its child node.
-\end{enumerate}
-
-The $InsertMany$ algorithm will add all the new leaves and then calculate the parent hashes. If a parent node has two children its value will be the hash of its left and right nodes, if it has one child, it will have the same value as its child.
-
-Every time a new node is updated or added, all the invariants are maintained because the invariants are used to update/add nodes.
-
-Then all the invariants are maintained before, during and after inserting $m$ new leaves into a LeanIMT.
 
 \subsubsection{Time complexity}
 
@@ -785,55 +708,6 @@ Update $a_2$ to $a_5$
     \end{algorithmic}
 \end{algorithm}
 
-\subsubsection{Correctness}
-\label{sec:update-correctness}
-
-Prove that after updating a node in the LeanIMT, the tree keeps all the properties.
-
-The Mathematical Induction method will be used to prove the correctness of this algorithm.
-
-The induction will be done using the depth of the tree. The correctness of the update function will be proven for all tree depths.
-
-$d$: Depth of the tree.
-
-\textbf{Base Case}
-
-$d = 0$
-
-If the depth is 0, it can have 0 or 1 node.
-If it has 0 leaves it is not necessary to use this function because there are no leaves.
-If it has 1 node, it is the root of the tree and if it is updated, the root is also updated because they are the same node.
-
-\textbf{Inductive Hypothesis}
-
-Assume that for a LeanIMT with depth $d$, the $update$ function works correctly because after updating a leaf everything is updated correctly up to the root.
-
-\textbf{Inductive Step}
-
-$d \Rightarrow d+1$
-
-If for a LeanIMT with depth $d$, the $update$ function works correctly because after updating a leaf everything is updated correctly up to the root, then prove that for depth $d+1$ the update function also works correctly.
-
-There are two cases when updating a leaf:
-
-\begin{enumerate}
-    \item When the node does not have a sibling.
-    \item When the node has a sibling.
-\end{enumerate}
-
-\textbf{Case 1: The node does not have a sibling}
-
-If the node that will be updated does not have a sibling, then the parent node will have the same value as the node.
-
-\textbf{Case 2: The node has a sibling}
-
-If the node has a sibling, the parent value will be the hash of the node with its sibling.
-
-After those cases, the tree that should be updated has depth $d$. Using the inductive hypothesis, the subtree of depth $d$ will correctly update all the ancestors up to the root.
-
-\textbf{Conclusion}
-
-Then by mathematical induction, the update function works correctly for any depth of the tree.
 
 \subsubsection{Time complexity}
 \label{sec:update-time-complexity}
@@ -931,11 +805,6 @@ Remove $a_2$
     \end{algorithmic}
 \end{algorithm}
 
-
-
-\subsubsection{Correctness}
-
-The proof of the correctness of this algorithm is the same as the \hyperref[sec:update-correctness]{Update function}.
 
 \subsubsection{Time complexity}
 
@@ -1113,78 +982,20 @@ If the number of elements in the path is equal to the depth of the tree, it mean
 
 However, if the path contains fewer elements than the depth of the tree, it means that some levels (except the root level) were omitted from the proof because they were unnecessary for calculating the root value. In this case, the two $index$ values will differ.
 
-\subsubsection{Correctness}
-
-Prove that the $generateProof$ function works correctly for all tree depths.
-
-The Mathematical Induction method will be used to prove the correctness of this algorithm.
-
-The induction will be done using the depth of the tree. The correctness of the $generateProof$ function will be proven for all tree depths.
-
-$d$: Depth of the tree.
-
-\textbf{Base Case}
-
-$d = 0$
-
-If the depth is 0, it can have 0 or 1 node.
-If it has 0 leaves it is not necessary to use this function because there are no leaves.
-If it has 1 leaf, the merkle proof will have the root and the leaf with the same values because they are the same nodes. The siblings will be empty and the path (index) too.
-
-\textbf{Inductive Hypothesis}
-
-Assume that for a LeanIMT with depth $d$, the $generateProof$ function works correctly because it returns the correct values necessary to rebuild the root.
-
-\textbf{Inductive Step}
-
-$d \Rightarrow d+1$
-
-If for a LeanIMT with depth $d$, the $generateProof$ function works correctly, prove that for a tree with depth $d + 1$, the $generatProof$ function also works correctly.
-
-There are two cases when generating a proof:
-
-\begin{enumerate}
-    \item When the node does not have a sibling.
-    \item When the node has a sibling.
-\end{enumerate}
-
-\textbf{Case 1: The node does not have a sibling}
-
-If the node does not have a sibling, nothing is added to the proof.
-
-\textbf{Case 2: The node has a sibling}
-
-If the node has a sibling, both the path and siblings arrays are updated accordingly.
-If the node is a right node, 1 will be added to the path and the left sibling will be added to siblings.
-If the node is a left node, 0 will be added to the path and the right sibling will be added to siblings.
-
-After those cases, the tree that should generate the proof has depth d. Using the inductive hypothesis, the subtree of depth d will correctly return the values in the proof.
-
-\textbf{Conclusions}
-
-By mathematical induction, the $generateProof$ function works correctly for any depth of the tree.
-
 
 \subsubsection{Time complexity}
-
-
 
 $n$: Number of leaves in the tree.
 
 $d$: Tree depth.
 
-
-
 To generate a Merkle Proof it is necessary to visit all the ancestors of the leaf up to the root of the tree.
-
-
 
 Number of operations to generate a Merkle Proof: $d + 1$
 
 This proof is the same as the \hyperref[UpdateTimeComplexity]{proof of the time complexity of the Update function}.
 
 The time complexity of the \textit{generateProof} function is $\boldsymbol{O(\log n)}$.
-
 
 
 \subsection{Verify Merkle Proof}
@@ -1328,49 +1139,7 @@ siblings: [$a_2$, $H_0$, $a_4$]
 \end{algorithm}
 
 
-
-\subsubsection{Correctness}
-
-Prove that the $verifyProof$ function works correctly for all tree depths.
-
-The Mathematical Induction method will be used to prove the correctness of this algorithm.
-
-The induction will be done using the depth of the tree. The correctness of the $verifyProof$ function will be proven for all tree depths.
-
-$d$: Depth of the tree.
-
-\textbf{Base Case}
-
-$d = 0$
-
-If the depth is 0, it can have 0 or 1 node.
-If it has 0 leaves it is not necessary to use this function because there are no leaves.
-If it has 1 leaf, the merkle root will be equal to the node so it will verify the proof successfully.
-
-\textbf{Inductive Hypothesis}
-
-Assume that for a LeanIMT with depth $d$, the $verifyProof$ function works correctly because it knows how to calculate all the hashes up to the root and then check if the calculated hash is equal to the root in the proof.
-
-\textbf{Inductive Step}
-
-$d \Rightarrow d+1$
-
-If for a LeanIMT with depth $d$, the $verifyProof$ function works correctly, prove that for a tree with depth $d + 1$, the $verifyProof$ function also works correctly.
-
-If the current node (which is the leaf at the beginning of the algorithm) is a right node, the parent value will be the hash of the left sibling with the current node.
-If the current node is a left node, the parent value will be the hash of the current node with the right sibling.
-Then, the current node will be the parent node.
-
-After running that once, the tree that should verify the proof has depth d. Using the inductive hypothesis, the subtree of depth d will successfully verify the values of the proof.
-
-\textbf{Conclusion}
-
-Then the $verifyProof$ function works correctly for any depth of the tree.
-
-
 \subsubsection{Time complexity}
-
-
 
 $n$: Number of leaves in the tree.
 
@@ -1383,7 +1152,6 @@ Number of operations to verify a Merkle Proof (worst case): $d + 1$
 This proof is the same as the \hyperref[UpdateTimeComplexity]{proof of the time complexity of the Update function}.
 
 The time complexity of the \textit{verifyProof} function is $\boldsymbol{O(\log n)}$.
-
 
 
 \section{Implementations}
@@ -1845,7 +1613,7 @@ Comparing the LeanIMT $Insert$ function in a loop with the LeanIMT $InsertMany$ 
 
 \section{Conclusions}
 
-This technical document explains the LeanIMT algorithms, proves their correctness and analyzes their time complexity. The benchmarks show the improvements of LeanIMT, which is the data structure used in Semaphore v4, over the IMT used in Semaphore v3.
+This technical document explains the LeanIMT algorithms and analyzes their time complexity. The benchmarks show the improvements of LeanIMT, which is the data structure used in Semaphore v4, over the IMT used in Semaphore v3.
 
 \subsection{Future Work}
 
