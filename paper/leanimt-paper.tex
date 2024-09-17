@@ -452,11 +452,21 @@ $m$: Number of leaves to insert.
 
 $d$: Tree depth after inserting the $m$ new leaves.
 
-Number of operations when inserting elements in batch:
+The number of operations required for batch insertion of elements is \textbf{approximately}:
 
 $ m + \lceil \frac{m}{2} \rceil + \lceil \frac{m}{4} \rceil + ... + \lceil \frac{m}{2^d} \rceil$
 
-That is the same as $\sum_{k=0}^{d} \lceil \frac{m}{2^k} \rceil$
+\textbf{Note:}
+
+This expression represents the exact number of operations when reconstructing the tree from scratch.
+
+The term \textbf{approximately} is used because the expression reflects the process of pairing nodes to create the parent nodes, assuming that, at each level, the first node to be paired is always a left child. This scenario typically occurs when the $insertMany$ function is used to add new elements to an empty tree or a tree that already has a power of two leaves.
+
+However, when the first node to be paired at level $k-1$ (assuming that the level of the leaves is $0$, then $k > 0$) is a right child, the number of operations required to compute the parent nodes of that level will be $\lceil \frac{m}{2^k} \rceil + 1$. For example, if a tree has $3$ leaves and you want to add $2$ new ones, updating the parent nodes of the new leaves (level $1$) will require $2$ operations instead of $1$.
+
+When these additional 1s are summed across levels, the total is $< log(n+m)$ which can be included in the initial expression as $+ log(n+m)$ without affecting the overall time complexity of the $insertMany$ function.
+
+The expression $ m + \lceil \frac{m}{2} \rceil + \lceil \frac{m}{4} \rceil + ... + \lceil \frac{m}{2^d} \rceil$ is the same as $\sum_{k=0}^{d} \lceil \frac{m}{2^k} \rceil$
 
 \textbf{Note:} $ m = \lceil m \rceil$
 
@@ -468,11 +478,9 @@ $\sum_{k=0}^{d} \lceil \frac{m}{2^k} \rceil \leq \sum_{k=0}^{d} (\frac{m}{2^k} +
 % is used here to create an empty space with the same size as the expression inside the braces.
 $\phantom{\sum_{k=0}^{d} \lceil \frac{m}{2^k} \rceil} \leq \sum_{k=0}^{d} \frac{m}{2^k} + \sum_{k=0}^{d} 1$
 
-$\phantom{\sum_{k=0}^{d} \lceil \frac{m}{2^k} \rceil} \leq 2m + O(\log (n+m))$
+$\phantom{\sum_{k=0}^{d} \lceil \frac{m}{2^k} \rceil} \leq 2m + \log (n+m)$
 
-$\phantom{\sum_{k=0}^{d} \lceil \frac{m}{2^k} \rceil} \leq O(m) + O(\log (n+m))$
-
-$\phantom{\sum_{k=0}^{d} \lceil \frac{m}{2^k} \rceil} \Rightarrow \boxed{O(m)}$
+$\phantom{\sum_{k=0}^{d} \lceil \frac{m}{2^k} \rceil} \Rightarrow \boxed{O(m + \log (n+m))}$
 
 $\sum_{k=0}^{d} \frac{m}{2^k} = m \sum_{k=0}^{d} \frac{1}{2^k} \approx m * 2 \Rightarrow 2m$
 
@@ -496,7 +504,7 @@ $d = \lceil \log (n+m) \rceil \leq \log (n+m) + 1$
 
 $\phantom{d = \lceil \log (n + m) \rceil} \Rightarrow O(\log (n+m))$
 
-Then the time complexity of the \textit{InsertMany} function is $\boldsymbol{O(m)}$.
+Then the time complexity of the \textit{InsertMany} function is $\boldsymbol{O(m + \log (n+m))}$.
 
 \textbf{Loop Insertion vs Batch Insertion}
 
@@ -508,9 +516,9 @@ If going to the root to update or add nodes $m$ times (one time per leaf to add)
 
 $m * \log (n+m) \Rightarrow \boxed{O(m \log (n+m))}$
 
-$\Rightarrow$ Time complexity Loop Insertion is superlinear: $\boldsymbol{O(m \log (n+m))}$
+$\Rightarrow$ Time complexity Loop Insertion: $\boldsymbol{O(m \log (n+m))}$
 
-$\Rightarrow$ Time complexity Batch Insertion (\textit{InsertMany} function) is linear: $\boldsymbol{O(m)}$
+$\Rightarrow$ Time complexity Batch Insertion (\textit{InsertMany} function): $\boldsymbol{O(m + \log (n+m))}$
 
 $\Rightarrow$ In terms of time complexity, it is more efficient to use the \textit{InsertMany} function than the \textit{Insert} function in a loop.
 
